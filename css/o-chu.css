@@ -1,0 +1,49 @@
+/* Lật Ô Chữ "Từ khóa Hội nghị": bảng ô chữ 3D lật liên hoàn + bàn phím chữ cái thể thao. */
+.oc-ds { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; max-height: 500px; overflow: auto; }
+.oc-dong { padding: 14px; border: 1px solid var(--vien); border-radius: 12px; background: #fbfcfd; display: grid; gap: 8px; }
+.oc-dong-dau { display: flex; justify-content: space-between; align-items: center; }
+.oc-stt { font: 800 0.85rem var(--mono); color: var(--xanh); }
+.oc-dong input { padding: 8px 10px !important; font-size: 0.94rem !important; }
+.nut-nho { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--vien-dam); background: #fff; color: var(--chu); font: 700 1rem var(--font); cursor: pointer; }
+.nut-xoa:hover { border-color: var(--do); background: #fff3f3; color: var(--do); }
+
+/* ── Sân khấu ── */
+.oc-san-khau { position: fixed; inset: 0; overflow: auto; display: grid; grid-template-rows: auto 1fr auto; padding: 18px 34px 22px; gap: 16px; background: var(--nen); }
+.oc-nen { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.oc-nen span { position: absolute; border-radius: 50%; filter: blur(85px); opacity: 0.48; animation: ocTroi 13s ease-in-out infinite alternate; }
+.oc-nen span:first-child { width: 50vw; height: 50vw; left: -12vw; top: -18vw; background: #7dd3fc; }
+.oc-nen span:last-child { width: 46vw; height: 46vw; right: -10vw; bottom: -16vw; background: #e4ff8a; animation-delay: -5s; }
+@keyframes ocTroi { from { transform: translate(0, 0) scale(1); } to { transform: translate(5vw, 4vw) scale(1.1); } }
+
+.oc-dau, .oc-trung-tam, .oc-chan { position: relative; z-index: 1; }
+.oc-dau { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+.oc-trai { display: flex; align-items: center; gap: 16px; }
+.oc-chi-so { margin: 2px 0 0; font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem); font-weight: 850; }
+.oc-thong-ke { margin: 0; font: 750 1rem var(--mono); color: var(--chu-phu); }
+
+.oc-trung-tam { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; max-width: 1260px; width: 100%; margin: 0 auto; }
+.oc-goi-y { margin: 0; padding: 14px 24px; border-radius: 16px; background: rgba(255,255,255,0.95); border-left: 7px solid var(--xanh); box-shadow: var(--bong); font-size: clamp(1.2rem, 0.95rem + 0.8vw, 1.65rem); font-weight: 750; text-align: center; max-width: 58ch; }
+
+/* ── Bảng ô chữ 3D ── */
+.oc-bang { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 28px; padding: 26px 28px; border-radius: 26px; background: linear-gradient(180deg, #1b263d, #0c1322); box-shadow: 0 34px 76px -28px rgba(12,19,34,0.65); max-width: 100%; perspective: 1000px; }
+.oc-tu { display: inline-flex; gap: 8px; }
+.oc-o { position: relative; width: clamp(46px, 5.4vw, 76px); height: clamp(60px, 7.6vh, 96px); transform-style: preserve-3d; transition: transform 560ms var(--chuyen); }
+.oc-o.da-mo { transform: rotateY(180deg); }
+.oc-mat { position: absolute; inset: 0; border-radius: 12px; display: grid; place-items: center; backface-visibility: hidden; }
+.oc-truoc { background: linear-gradient(155deg, #2563eb, #0b4fd6); border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.oc-truoc::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.28); }
+.oc-sau { transform: rotateY(180deg); background: linear-gradient(180deg, #ffffff, #eef3f8); border: 2.5px solid var(--chanh); font: 900 clamp(1.8rem, 2.8vw, 3.2rem)/1 var(--font); color: var(--chu); box-shadow: 0 0 22px rgba(212,255,58,0.45); }
+.oc-o.vua-lat .oc-sau { background: linear-gradient(180deg, #f3ffc4, var(--chanh)); }
+
+.oc-y-nghia { margin: 0; padding: 14px 24px; border-radius: 16px; background: linear-gradient(125deg, var(--chanh), #f3ffc4 60%, #ffffff); border: 2px solid var(--chanh-dam); font-size: 1.2rem; font-weight: 750; text-align: center; max-width: 68ch; animation: ocHien 420ms var(--chuyen); }
+@keyframes ocHien { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ── Bàn phím chữ cái A-Z ── */
+.oc-phim { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; max-width: 920px; }
+.phim-chu { width: 52px; height: 52px; border-radius: 12px; border: 2px solid var(--vien-dam); background: #ffffff; color: var(--chu); font: 850 1.25rem var(--mono); cursor: pointer; box-shadow: 0 4px 10px -6px rgba(12,19,34,0.28); transition: transform 160ms var(--chuyen), background-color 180ms, border-color 180ms, opacity 200ms; }
+.phim-chu:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--xanh); background: #eef4ff; color: var(--xanh); }
+.phim-chu.trung { background: var(--chanh); border-color: var(--chanh-dam); color: var(--chu); opacity: 0.72; }
+.phim-chu.truot { background: #fee2e2; border-color: #fca5a5; color: #b91c1c; opacity: 0.42; text-decoration: line-through; }
+
+.oc-chan { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 1260px; width: 100%; margin: 0 auto; }
+#phao-oc { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 6; }

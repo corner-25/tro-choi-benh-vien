@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lật Ô Chữ – Từ khóa Hội nghị</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c1322'/%3E%3Crect x='8' y='18' width='22' height='28' rx='5' fill='%232563eb'/%3E%3Crect x='34' y='18' width='22' height='28' rx='5' fill='%23d4ff3a'/%3E%3Ctext x='45' y='39' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='18' fill='%230c1322'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/o-chu.css">
+</head>
+<body>
+  <main id="man-chuan-bi" class="man chuan-bi" aria-labelledby="tieu-de-chuan-bi">
+    <header class="cb-dau">
+      <a href="index.html" class="ve-cong" aria-label="Về cổng trò chơi"><img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="logo" width="220" height="47"></a>
+      <div class="cb-tieu-de">
+        <p class="nhan-nho"><a href="index.html" class="lien-ket-cong">Cổng trò chơi</a> · <span class="ten-su-kien"></span></p>
+        <h1 id="tieu-de-chuan-bi">Lật Ô Chữ</h1>
+      </div>
+      <dl class="tong-ket" aria-label="Tình trạng bộ từ khóa">
+        <div><dt>Số từ khóa</dt><dd id="so-tu">0</dd></div>
+      </dl>
+    </header>
+
+    <div class="cb-luoi">
+      <section class="the" aria-labelledby="h-tu-khoa">
+        <h2 id="h-tu-khoa"><span class="so-buoc">01</span>Danh sách từ khóa hội nghị</h2>
+        <p class="goi-y">Nhập các từ khóa nổi bật từ ý kiến đóng góp của viên chức – người lao động. Khán giả hô chữ cái không dấu (A–Z), hệ thống tự động lật 3D tất cả chữ có dấu tương ứng (ví dụ bấm <b>A</b> sẽ lật cả <b>A, Á, À, Â, Ă</b>).</p>
+        <div class="hang-nut">
+          <button type="button" id="nut-them" class="nut nut-vien">Thêm từ khóa</button>
+          <button type="button" id="nut-mau" class="nut nut-chu">Nạp 6 từ khóa mẫu hội nghị</button>
+        </div>
+        <ol id="ds-tu-khoa" class="oc-ds"></ol>
+      </section>
+
+      <section class="the" aria-labelledby="h-san-khau">
+        <h2 id="h-san-khau"><span class="so-buoc">02</span>Trình chiếu sân khấu</h2>
+        <p class="goi-y">Gọn nhẹ trong 5 phút, dễ đọc từ hàng ghế cuối, vừa vui vừa truyền tải đúng thông điệp hội nghị.</p>
+        <label class="hop-chon"><input id="o-am-thanh" type="checkbox" checked><span>Âm thanh</span></label>
+        <button type="button" id="nut-vao" class="nut nut-chinh nut-to" disabled><span>Mở sân khấu Lật Ô Chữ</span><kbd>Space</kbd></button>
+      </section>
+    </div>
+    <p class="phim-tat"><kbd>A</kbd>–<kbd>Z</kbd> mở chữ cái <kbd>Enter</kbd> giải toàn bộ ô chữ <kbd>←</kbd><kbd>→</kbd> chuyển từ khóa <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>Esc</kbd> về bàn điều khiển</p>
+  </main>
+
+  <section id="man-san-khau" class="man oc-san-khau" aria-label="Sân khấu Lật Ô Chữ" hidden>
+    <div class="oc-nen" aria-hidden="true"><span></span><span></span></div>
+    <header class="oc-dau">
+      <div class="oc-trai">
+        <img src="assets/logo.png" alt="" class="logo-nho" width="160" height="34">
+        <div>
+          <p class="nhan-nho ten-su-kien"></p>
+          <p id="sk-chi-so" class="oc-chi-so"></p>
+        </div>
+      </div>
+      <p id="sk-thong-ke" class="oc-thong-ke"></p>
+    </header>
+
+    <div class="oc-trung-tam">
+      <p id="sk-goi-y" class="oc-goi-y"></p>
+      <div id="sk-bang" class="oc-bang" aria-live="polite"></div>
+      <p id="sk-y-nghia" class="oc-y-nghia" hidden></p>
+      <div id="sk-phim" class="oc-phim" aria-label="Bảng chữ cái chọn mở"></div>
+    </div>
+
+    <footer class="oc-chan">
+      <div class="hang-nut" style="margin: 0;">
+        <button type="button" id="nut-truoc" class="nut nut-vien">Từ trước <kbd>←</kbd></button>
+        <button type="button" id="nut-giai" class="nut nut-chinh">Giải ô chữ <kbd>Enter</kbd></button>
+        <button type="button" id="nut-sau" class="nut nut-vien">Từ tiếp <kbd>→</kbd></button>
+      </div>
+      <button type="button" id="nut-ve" class="nut nut-chu">Về bàn điều khiển <kbd>Esc</kbd></button>
+    </footer>
+    <canvas id="phao-oc" aria-hidden="true"></canvas>
+  </section>
+
+  <script src="js/chung/luu-tru.js" defer></script>
+  <script src="js/chung/am-thanh.js" defer></script>
+  <script src="js/chung/phao.js" defer></script>
+  <script src="js/o-chu/o-chu.js" defer></script>
+  <script src="js/o-chu/app.js" defer></script>
+</body>
+</html>

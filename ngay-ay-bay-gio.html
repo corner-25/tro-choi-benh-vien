@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ngày ấy – Bây giờ</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b4fd6'/%3E%3Crect x='10' y='16' width='20' height='32' rx='4' fill='%23fff'/%3E%3Crect x='34' y='16' width='20' height='32' rx='4' fill='%23d4ff3a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/ngay-ay.css">
+</head>
+<body>
+  <!-- ── Bàn điều khiển ── -->
+  <main id="man-chuan-bi" class="man chuan-bi" aria-labelledby="tieu-de-chuan-bi">
+    <header class="cb-dau">
+      <a href="index.html" class="ve-cong" aria-label="Về cổng trò chơi"><img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="logo" width="220" height="47"></a>
+      <div class="cb-tieu-de">
+        <p class="nhan-nho"><a href="index.html" class="lien-ket-cong">Cổng trò chơi</a> · <span class="ten-su-kien"></span></p>
+        <h1 id="tieu-de-chuan-bi">Ngày ấy – Bây giờ</h1>
+      </div>
+      <dl class="tong-ket" aria-label="Tình trạng bộ ảnh">
+        <div><dt>Số vòng chơi</dt><dd id="so-vong">0</dd></div>
+      </dl>
+    </header>
+
+    <div class="cb-luoi na-luoi">
+      <section class="the" aria-labelledby="h-bo-anh">
+        <h2 id="h-bo-anh"><span class="so-buoc">01</span>Danh sách ảnh kỷ niệm</h2>
+        <p class="goi-y">Chiếu ảnh xưa được che bởi 9 mảnh ghép lật 3D để cả hội trường cùng mở dần và đoán năm, địa điểm. Khi lật đáp án, rèm ánh sáng sẽ quét chuyển mượt từ <b>Ngày ấy</b> sang <b>Bây giờ</b>.</p>
+        <div class="hang-nut">
+          <button type="button" id="nut-them-vong" class="nut nut-vien">Thêm vòng mới</button>
+          <button type="button" id="nut-nap-mau" class="nut nut-chu">Nạp bộ gợi nhớ mẫu</button>
+          <button type="button" id="nut-don-anh" class="nut nut-chu nut-nguy" hidden>Dọn tất cả ảnh đã tải</button>
+        </div>
+        <ol id="ds-ky-niem" class="ds-ky-niem"></ol>
+        <div id="trang-thai-na" class="trang-thai" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="the" aria-labelledby="h-san-khau">
+        <h2 id="h-san-khau"><span class="so-buoc">02</span>Cài đặt sân khấu</h2>
+        <p class="goi-y">Bộ mẫu có sẵn hình minh họa Xưa &amp; Nay để bạn chạy thử ngay hiệu ứng mảnh ghép 3D và rèm quét so sánh. Khi sự kiện diễn ra, tải ảnh tư liệu thật đè lên từng vòng.</p>
+        <label class="hop-chon"><input id="o-manh-ghep" type="checkbox" checked><span>Che ảnh bằng 9 mảnh ghép lật mở dần</span></label>
+        <label class="hop-chon"><input id="o-am-thanh" type="checkbox" checked><span>Âm thanh</span></label>
+        <button type="button" id="nut-vao" class="nut nut-chinh nut-to" disabled><span>Chiếu sân khấu Ngày ấy – Bây giờ</span><kbd>Space</kbd></button>
+      </section>
+    </div>
+    <p class="phim-tat"><kbd>1</kbd>–<kbd>9</kbd> lật từng mảnh ảnh <kbd>Space</kbd> mở gợi ý / lật đáp án <kbd>←</kbd><kbd>→</kbd> chuyển vòng <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>Esc</kbd> về bàn điều khiển</p>
+  </main>
+
+  <!-- ── Sân khấu ── -->
+  <section id="man-san-khau" class="man na-san-khau" aria-label="Sân khấu Ngày ấy – Bây giờ" hidden>
+    <div class="na-nen" aria-hidden="true"><span></span><span></span></div>
+
+    <header class="na-dau">
+      <div class="na-trai">
+        <img src="assets/logo.png" alt="" class="logo-nho" width="160" height="34">
+        <div>
+          <p class="nhan-nho ten-su-kien"></p>
+          <div class="na-chi-so-hang">
+            <p id="sk-chi-so" class="na-chi-so"></p>
+            <div id="sk-moc-ds" class="na-moc-ds" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="na-trung-tam">
+      <div class="na-san-anh">
+        <div id="sk-khung-chinh" class="na-khung-chinh">
+          <img id="sk-img-xua" class="na-lop-anh na-lop-xua" alt="Hình ảnh Ngày ấy">
+          <div id="sk-lop-nay-boc" class="na-lop-nay-boc" hidden>
+            <img id="sk-img-nay" class="na-lop-nay" alt="Hình ảnh Bây giờ">
+          </div>
+          <span class="na-nhan-goc trai">Ngày ấy</span>
+          <span id="sk-nhan-nay" class="na-nhan-goc phai" hidden>Bây giờ</span>
+          <div id="sk-rem" class="na-rem" hidden><div class="na-rem-tay" aria-hidden="true">↔</div></div>
+          <input id="sk-keo-rem" type="range" min="0" max="100" value="50" class="na-thanh-keo" aria-label="Kéo rèm so sánh Ngày ấy và Bây giờ" hidden>
+          <div id="sk-luoi-manh" class="na-luoi-manh" aria-label="Mảnh ghép che ảnh"></div>
+          <div id="sk-chop" class="na-chop" aria-hidden="true"></div>
+        </div>
+        <div class="na-thanh-cong-cu-anh">
+          <p id="sk-trang-thai-anh" class="na-trang-thai-anh"></p>
+          <div class="hang-nut" style="margin: 0;">
+            <button type="button" id="nut-mo-manh" class="nut nut-vien">Mở ngẫu nhiên 1 mảnh</button>
+            <button type="button" id="nut-mo-het-manh" class="nut nut-chu">Mở hết mảnh</button>
+            <button type="button" id="nut-quet-lai" class="nut nut-vien" hidden>Quét rèm so sánh lại</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="na-thong-tin">
+        <h2 id="sk-cau-hoi" class="na-cau-hoi"></h2>
+        <ul id="sk-goi-y" class="na-goi-y-ds" aria-live="polite"></ul>
+        <div id="sk-dap-an" class="na-dap-an" hidden aria-live="polite">
+          <p id="sk-nam" class="na-nam"></p>
+          <p id="sk-dia-diem" class="na-dia-diem"></p>
+          <p id="sk-chuyen" class="na-chuyen"></p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="na-chan">
+      <div class="hang-nut" style="margin: 0;">
+        <button type="button" id="nut-truoc" class="nut nut-vien">Vòng trước <kbd>←</kbd></button>
+        <button type="button" id="nut-buoc" class="nut nut-chinh">Mở gợi ý 1 <kbd>Space</kbd></button>
+        <button type="button" id="nut-sau" class="nut nut-vien">Vòng tiếp <kbd>→</kbd></button>
+      </div>
+      <button type="button" id="nut-ve" class="nut nut-chu">Về bàn điều khiển <kbd>Esc</kbd></button>
+    </footer>
+    <canvas id="phao-na" aria-hidden="true"></canvas>
+  </section>
+
+  <script src="js/chung/luu-tru.js" defer></script>
+  <script src="js/chung/am-thanh.js" defer></script>
+  <script src="js/chung/phao.js" defer></script>
+  <script src="js/quay-so/anh-giai.js" defer></script>
+  <script src="js/ngay-ay/app.js" defer></script>
+</body>
+</html>

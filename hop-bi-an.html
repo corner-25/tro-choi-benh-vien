@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mở Hộp Bí Ẩn</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c1322'/%3E%3Crect x='12' y='20' width='40' height='28' rx='6' fill='%232563eb' stroke='%23d4ff3a' stroke-width='3'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='monospace' font-weight='900' font-size='18' fill='%23d4ff3a'%3E01%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/hop-bi-an.css">
+</head>
+<body>
+  <main id="man-chuan-bi" class="man chuan-bi" aria-labelledby="tieu-de-chuan-bi">
+    <header class="cb-dau">
+      <a href="index.html" class="ve-cong" aria-label="Về cổng trò chơi"><img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="logo" width="220" height="47"></a>
+      <div class="cb-tieu-de">
+        <p class="nhan-nho"><a href="index.html" class="lien-ket-cong">Cổng trò chơi</a> · <span class="ten-su-kien"></span></p>
+        <h1 id="tieu-de-chuan-bi">Mở Hộp Bí Ẩn</h1>
+      </div>
+      <dl class="tong-ket" aria-label="Tình trạng hộp">
+        <div><dt>Tổng số hộp</dt><dd id="so-hop">0</dd></div>
+        <div><dt>Chưa mở</dt><dd id="so-chua-mo">0</dd></div>
+      </dl>
+    </header>
+
+    <div class="cb-luoi">
+      <section class="the" aria-labelledby="h-noi-dung">
+        <h2 id="h-noi-dung"><span class="so-buoc">01</span>Phần thưởng ẩn trong các hộp</h2>
+        <p class="goi-y">Mỗi dòng là phần thưởng của 1 hộp (tối đa 20 hộp). Hệ thống tự động xáo trộn ngẫu nhiên vào các hộp đánh số 01, 02… để đại biểu hội trường hô chọn.</p>
+        <div class="hang-nut">
+          <button type="button" id="nut-mau-12" class="nut nut-vien">Bộ 12 hộp tiêu chuẩn</button>
+          <button type="button" id="nut-xao-lai" class="nut nut-chu">Xáo trộn lại toàn bộ hộp mới</button>
+        </div>
+        <label class="nhan" for="o-ds-qua">Danh sách phần thưởng (mỗi dòng 1 hộp)</label>
+        <textarea id="o-ds-qua" rows="10" spellcheck="false"></textarea>
+        <div id="trang-thai-hb" class="trang-thai" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="the" aria-labelledby="h-san-khau">
+        <h2 id="h-san-khau"><span class="so-buoc">02</span>Sân khấu mở hộp</h2>
+        <p class="goi-y">Mời đại biểu (tự do hoặc bốc ngẫu nhiên bằng phím R) hô chọn số hộp; vali bật chốt, rung áp suất, khựng nắp ở chặng nước rút rồi lật 3D công bố phần thưởng và kích hoạt đặc quyền thật.</p>
+        <label class="hop-chon"><input id="o-am-thanh" type="checkbox" checked><span>Âm thanh</span></label>
+        <button type="button" id="nut-vao" class="nut nut-chinh nut-to" disabled><span>Mở sân khấu Hộp Bí Ẩn</span><kbd>Space</kbd></button>
+      </section>
+    </div>
+    <p class="phim-tat"><kbd>Space</kbd> bật nắp hộp đang chọn <kbd>R</kbd> bốc đại biểu <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>Esc</kbd> đóng hộp / về bàn điều khiển</p>
+  </main>
+
+  <section id="man-san-khau" class="man hb-san-khau" aria-label="Sân khấu Mở Hộp Bí Ẩn" hidden>
+    <div class="hb-nen" aria-hidden="true"><span></span><span></span></div>
+    <div class="hb-den" aria-hidden="true"><span></span><span></span></div>
+
+    <header class="hb-dau">
+      <div class="hb-trai">
+        <img src="assets/logo.png" alt="" class="logo-nho" width="160" height="34">
+        <div>
+          <p class="nhan-nho ten-su-kien"></p>
+          <p class="hb-tieu-de">Mở Hộp Bí Ẩn</p>
+        </div>
+      </div>
+      <p class="hb-con"><span id="sk-chua-mo">0</span> hộp còn đóng</p>
+    </header>
+
+    <div id="hb-ticker" class="hb-ticker" role="status" aria-live="polite">
+      <span id="hb-ticker-nhan" class="hb-ticker-nhan">SÂN KHẤU</span>
+      <p id="hb-ticker-chu" class="hb-ticker-chu">Mời đại biểu hô chọn một số hộp bí ẩn trên màn hình!</p>
+    </div>
+
+    <div class="hb-than">
+      <div id="hb-luoi" class="hb-luoi" aria-label="Các hộp đánh số"></div>
+      <aside class="hb-bang-giai" aria-label="Danh sách phần thưởng">
+        <div id="hb-ty-le-db" class="hb-ty-le-db" aria-live="polite">
+          <div class="hb-ty-le-dau">
+            <span class="hb-ty-le-tieu-de">Tỷ lệ Giải Đặc biệt</span>
+            <span id="hb-ty-le-nhan" class="hb-ty-le-nhan" hidden>CƠ HỘI CAO</span>
+          </div>
+          <p id="hb-ty-le-so" class="hb-ty-le-so">1 / 12 (8%)</p>
+        </div>
+        <h3>Phần thưởng trong trò chơi</h3>
+        <ol id="hb-ds-giai" class="hb-ds-giai"></ol>
+      </aside>
+    </div>
+
+    <div id="hb-san-mo" class="hb-san-mo" hidden role="dialog" aria-label="Mở hộp cận cảnh">
+      <canvas id="hb-tia-canvas" aria-hidden="true"></canvas>
+      <div class="hb-trung-tam">
+        <p class="hb-goi-y-mo" id="hb-goi-y-mo">Cả hội trường cùng đếm 3 – 2 – 1!</p>
+        <div id="hb-hop-lon" class="hb-hop-lon">
+          <div id="hb-day-hop" class="hb-day-hop">
+            <span id="hb-huy-hieu-x2" class="hb-huy-hieu" hidden>x2</span>
+            <p id="hb-noi-dung" class="hb-noi-dung"></p>
+            <p id="hb-phu-chu" class="hb-phu-chu" hidden></p>
+          </div>
+          <div class="hb-nap-hop">
+            <div class="hb-nap-mat ngoai">
+              <span class="hb-tay-cam" aria-hidden="true"></span>
+              <span id="hb-nap-so" class="hb-nap-so">01</span>
+              <span class="hb-nap-chu">Hộp bí ẩn</span>
+              <span class="hb-khe-sang" aria-hidden="true"></span>
+            </div>
+            <div class="hb-nap-mat trong" aria-hidden="true">
+              <span class="hb-nap-lot">HỘP BÍ ẨN · UMC</span>
+            </div>
+          </div>
+          <span class="hb-chot trai" aria-hidden="true"></span>
+          <span class="hb-chot phai" aria-hidden="true"></span>
+        </div>
+        <div class="hang-nut hang-giua">
+          <button type="button" id="nut-bat-nap" class="nut nut-chinh nut-to nut-hep"><span>Bật nắp hộp!</span><kbd>Space</kbd></button>
+          <button type="button" id="nut-doi-hop" class="nut nut-vien">Đổi hộp khác</button>
+          <button type="button" id="nut-dong-hop" class="nut nut-vien">Quay lại bảng hộp <kbd>Esc</kbd></button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="hb-chan">
+      <div class="hb-chan-trai">
+        <button type="button" id="nut-boc-dai-bieu" class="nut nut-chinh"><span>Bốc đại biểu</span><kbd>R</kbd></button>
+        <button type="button" id="nut-xuat-csv" class="nut nut-vien">Xuất CSV</button>
+        <button type="button" id="nut-in-bien-ban" class="nut nut-vien">In biên bản</button>
+      </div>
+      <div class="hb-chan-phai">
+        <button type="button" id="nut-xao-sk" class="nut nut-vien">Xáo lại ván mới</button>
+        <button type="button" id="nut-ve" class="nut nut-chu">Về bàn điều khiển <kbd>Esc</kbd></button>
+      </div>
+    </footer>
+    <canvas id="phao-hop" aria-hidden="true"></canvas>
+  </section>
+
+  <script src="js/chung/luu-tru.js" defer></script>
+  <script src="js/chung/am-thanh.js" defer></script>
+  <script src="js/chung/phao.js" defer></script>
+  <script src="js/chung/bien-ban.js" defer></script>
+  <script src="js/hop-bi-an/hop-bi-an.js" defer></script>
+  <script src="js/hop-bi-an/app.js" defer></script>
+</body>
+</html>

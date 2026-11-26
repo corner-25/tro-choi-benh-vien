@@ -1,0 +1,89 @@
+/* Ngày ấy – Bây giờ: sân khấu mảnh ghép lật 3D, rèm quét so sánh Trước – Sau và chớp máy ảnh. */
+.na-luoi { grid-template-columns: 1.5fr 1fr; }
+.ds-ky-niem { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; max-height: 540px; overflow: auto; }
+.kn-dong { padding: 14px; border: 1px solid var(--vien); border-radius: 12px; background: #fbfcfd; display: grid; gap: 10px; }
+.kn-dau { display: flex; justify-content: space-between; align-items: center; }
+.kn-stt { font: 800 0.85rem var(--mono); color: var(--xanh); }
+.kn-anh-hang { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kn-o-anh { display: flex; align-items: center; gap: 10px; padding: 8px; border: 1px dashed var(--vien-dam); border-radius: 10px; background: #fff; cursor: pointer; }
+.kn-o-anh:hover { border-color: var(--xanh); }
+.kn-o-anh img { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; background: #eef2f7; flex: none; }
+.kn-o-anh span { font-size: 0.85rem; font-weight: 650; color: var(--chu-phu); }
+.kn-hai-cot { display: grid; grid-template-columns: 140px 1fr; gap: 8px; }
+.kn-dong input { padding: 8px 10px !important; font-size: 0.92rem !important; }
+.nut-nho { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--vien-dam); background: #fff; color: var(--chu); font: 700 1rem var(--font); cursor: pointer; }
+.nut-xoa:hover { border-color: var(--do); background: #fff3f3; color: var(--do); }
+
+/* ── Sân khấu ── */
+.na-san-khau { position: fixed; inset: 0; overflow: auto; display: grid; grid-template-rows: auto 1fr auto; padding: 18px 36px 22px; gap: 16px; background: var(--nen); }
+.na-nen { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.na-nen span { position: absolute; border-radius: 50%; filter: blur(85px); opacity: 0.48; animation: naTroi 14s ease-in-out infinite alternate; }
+.na-nen span:first-child { width: 50vw; height: 50vw; left: -12vw; top: -18vw; background: #93c5fd; }
+.na-nen span:last-child { width: 46vw; height: 46vw; right: -10vw; bottom: -16vw; background: #e4ff8a; animation-delay: -6s; }
+@keyframes naTroi { from { transform: translate(0, 0) scale(1); } to { transform: translate(5vw, 4vw) scale(1.1); } }
+
+.na-dau, .na-trung-tam, .na-chan { position: relative; z-index: 1; }
+.na-dau { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.na-trai { display: flex; align-items: center; gap: 18px; }
+.na-chi-so-hang { display: flex; align-items: center; gap: 12px; margin-top: 2px; }
+.na-chi-so { margin: 0; font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem); font-weight: 850; }
+.na-moc-ds { display: flex; gap: 7px; }
+.na-moc { width: 11px; height: 11px; border-radius: 50%; background: rgba(12,19,34,0.16); transition: transform 240ms var(--chuyen), background-color 240ms; }
+.na-moc.da-qua { background: var(--xanh); }
+.na-moc.dang-xem { background: var(--chanh-dam); transform: scale(1.45); box-shadow: 0 0 0 4px rgba(212,255,58,0.55); }
+
+.na-trung-tam { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; align-items: center; max-width: 1320px; width: 100%; margin: 0 auto; min-height: 0; }
+
+/* ── Khung ảnh đa lớp: Ảnh Xưa + Rèm ảnh Nay + Lưới 9 mảnh ghép 3D ── */
+.na-san-anh { position: relative; background: #ffffff; border: 2px solid rgba(12,19,34,0.12); border-radius: 24px; padding: 14px; box-shadow: 0 28px 70px -28px rgba(12,19,34,0.35); }
+.na-khung-chinh { position: relative; aspect-ratio: 16 / 10; border-radius: 16px; overflow: hidden; background: #0c1322; user-select: none; }
+.na-lop-anh { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.na-lop-xua { filter: sepia(0.28) contrast(1.04); transition: filter 500ms; }
+.na-lop-nay-boc { position: absolute; inset: 0; overflow: hidden; clip-path: inset(0 0 0 var(--cat, 100%)); }
+.na-lop-nay { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Nhãn góc Ngày ấy / Bây giờ */
+.na-nhan-goc { position: absolute; top: 14px; z-index: 3; font: 850 0.78rem var(--mono); letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; border-radius: 8px; box-shadow: 0 8px 20px -6px rgba(0,0,0,0.45); pointer-events: none; }
+.na-nhan-goc.trai { left: 14px; background: rgba(12,19,34,0.88); color: #ffffff; }
+.na-nhan-goc.phai { right: 14px; background: var(--chanh); color: var(--chu); }
+
+/* Rèm quét so sánh Trước – Sau */
+.na-rem { position: absolute; top: 0; bottom: 0; left: var(--cat, 100%); z-index: 4; width: 4px; margin-left: -2px; background: var(--chanh); box-shadow: 0 0 18px rgba(212,255,58,0.95); pointer-events: none; }
+.na-rem-tay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: var(--chanh); border: 3px solid var(--chu); color: var(--chu); display: grid; place-items: center; font: 900 1rem var(--mono); box-shadow: 0 10px 24px rgba(12,19,34,0.45); }
+.na-thanh-keo { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 5; }
+
+/* Lưới 9 mảnh ghép 3D */
+.na-luoi-manh { position: absolute; inset: 0; z-index: 6; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 3px; padding: 3px; perspective: 900px; }
+.na-manh { border: 1px solid rgba(255,255,255,0.22); border-radius: 8px; background: linear-gradient(145deg, #1b2844, #0c1322); color: rgba(255,255,255,0.88); font: 900 2rem var(--mono); cursor: pointer; display: grid; place-items: center; transition: transform 520ms var(--chuyen), opacity 460ms, background-color 200ms; backface-visibility: hidden; }
+.na-manh:hover:not(.da-mo) { background: linear-gradient(145deg, #0b4fd6, #083ea8); color: var(--chanh); transform: scale(0.97); }
+.na-manh.da-mo { opacity: 0; transform: rotateY(100deg) scale(0.72); pointer-events: none; }
+
+/* Chớp đèn máy ảnh khi lật đáp án */
+.na-chop { position: absolute; inset: 0; z-index: 7; background: #ffffff; opacity: 0; pointer-events: none; }
+.na-chop.nhay { animation: chopAnh 620ms ease-out; }
+@keyframes chopAnh { 0% { opacity: 0.92; } 100% { opacity: 0; } }
+
+.na-thanh-cong-cu-anh { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.na-trang-thai-anh { margin: 0; font: 700 0.85rem var(--mono); color: var(--chu-phu); }
+
+/* ── Cột thông tin & Gợi ý ── */
+.na-thong-tin { display: flex; flex-direction: column; gap: 14px; }
+.na-cau-hoi { margin: 0; font-size: clamp(1.55rem, 1.05rem + 1.45vw, 2.35rem); font-weight: 850; line-height: 1.24; letter-spacing: -0.02em; }
+.na-goi-y-ds { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.na-goi-y-ds li { padding: 14px 18px; border-radius: 16px; background: rgba(255,255,255,0.96); border: 1px solid var(--vien); border-left: 6px solid var(--xanh); box-shadow: var(--bong); font-size: 1.18rem; font-weight: 650; animation: truotGoiY 420ms var(--chuyen); }
+@keyframes truotGoiY { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+
+.na-dap-an { position: relative; overflow: hidden; padding: 22px 26px; border-radius: 20px; border: 2px solid var(--chanh-dam); background: linear-gradient(125deg, var(--chanh), #f3ffc4 55%, #ffffff); box-shadow: 0 28px 65px -26px rgba(101,163,13,0.75); animation: bungDapAn 540ms var(--chuyen); }
+@keyframes bungDapAn { from { opacity: 0; transform: translateY(18px) scale(0.95); } to { opacity: 1; transform: none; } }
+.na-dap-an::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 28%, rgba(255,255,255,0.88) 50%, transparent 72%); transform: translateX(-100%); animation: quetNa 1s 150ms var(--chuyen) forwards; pointer-events: none; }
+@keyframes quetNa { to { transform: translateX(100%); } }
+.na-nam { margin: 0; font: 900 clamp(2.1rem, 1.4rem + 2vw, 3.3rem)/1 var(--mono); color: var(--chu); }
+.na-dia-diem { margin: 8px 0 0; font-size: clamp(1.3rem, 1rem + 0.9vw, 1.85rem); font-weight: 850; }
+.na-chuyen { margin: 8px 0 0; font-size: 1.08rem; font-weight: 600; color: #2d3a12; }
+
+.na-chan { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 1320px; width: 100%; margin: 0 auto; }
+#phao-na { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 8; }
+
+@media (max-width: 1020px) {
+  .na-luoi, .na-trung-tam, .kn-anh-hang { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,321 @@
+﻿Mã nhân viên,Họ và tên,Đơn vị
+MAU-001,Trần Ngọc Hòa,Khoa Dược
+MAU-002,Lê Thu Thảo,Khoa Xét nghiệm
+MAU-003,Phạm Thị Dũng,Khoa Cấp cứu
+MAU-004,Hoàng Thanh Mai,Phòng Hành chính
+MAU-005,Võ Quốc Yến,Phòng Điều dưỡng
+MAU-006,Đặng Minh Hạnh,Khoa Thần kinh
+MAU-007,Bùi Hữu Tâm,Khoa Phụ sản
+MAU-008,Đỗ Văn Châu,Khoa Khám bệnh
+MAU-009,Huỳnh Ngọc Linh,Khoa Dược
+MAU-010,Nguyễn Thu Tuấn,Khoa Xét nghiệm
+MAU-011,Trần Thị Hải,Khoa Cấp cứu
+MAU-012,Lê Thanh Phúc,Phòng Hành chính
+MAU-013,Phạm Quốc Bình,Phòng Điều dưỡng
+MAU-014,Hoàng Minh Lan,Khoa Thần kinh
+MAU-015,Võ Hữu Trang,Khoa Phụ sản
+MAU-016,Đặng Văn Hà,Khoa Khám bệnh
+MAU-017,Bùi Ngọc Nam,Khoa Dược
+MAU-018,Đỗ Thu An,Khoa Xét nghiệm
+MAU-019,Huỳnh Thị Hòa,Khoa Cấp cứu
+MAU-020,Nguyễn Thanh Thảo,Phòng Hành chính
+MAU-021,Trần Quốc Dũng,Phòng Điều dưỡng
+MAU-022,Lê Minh Mai,Khoa Thần kinh
+MAU-023,Phạm Hữu Yến,Khoa Phụ sản
+MAU-024,Hoàng Văn Hạnh,Khoa Khám bệnh
+MAU-025,Võ Ngọc Tâm,Khoa Dược
+MAU-026,Đặng Thu Châu,Khoa Xét nghiệm
+MAU-027,Bùi Thị Linh,Khoa Cấp cứu
+MAU-028,Đỗ Thanh Tuấn,Phòng Hành chính
+MAU-029,Huỳnh Quốc Hải,Phòng Điều dưỡng
+MAU-030,Nguyễn Minh Phúc,Khoa Thần kinh
+MAU-031,Trần Hữu Bình,Khoa Phụ sản
+MAU-032,Lê Văn Lan,Khoa Khám bệnh
+MAU-033,Phạm Ngọc Trang,Khoa Dược
+MAU-034,Hoàng Thu Hà,Khoa Xét nghiệm
+MAU-035,Võ Thị Nam,Khoa Cấp cứu
+MAU-036,Đặng Thanh An,Phòng Hành chính
+MAU-037,Bùi Quốc Hòa,Phòng Điều dưỡng
+MAU-038,Đỗ Minh Thảo,Khoa Thần kinh
+MAU-039,Huỳnh Hữu Dũng,Khoa Phụ sản
+MAU-040,Nguyễn Văn Mai,Khoa Khám bệnh
+MAU-041,Trần Ngọc Yến,Khoa Dược
+MAU-042,Lê Thu Hạnh,Khoa Xét nghiệm
+MAU-043,Phạm Thị Tâm,Khoa Cấp cứu
+MAU-044,Hoàng Thanh Châu,Phòng Hành chính
+MAU-045,Võ Quốc Linh,Phòng Điều dưỡng
+MAU-046,Đặng Minh Tuấn,Khoa Thần kinh
+MAU-047,Bùi Hữu Hải,Khoa Phụ sản
+MAU-048,Đỗ Văn Phúc,Khoa Khám bệnh
+MAU-049,Huỳnh Ngọc Bình,Khoa Dược
+MAU-050,Nguyễn Thu Lan,Khoa Xét nghiệm
+MAU-051,Trần Thị Trang,Khoa Cấp cứu
+MAU-052,Lê Thanh Hà,Phòng Hành chính
+MAU-053,Phạm Quốc Nam,Phòng Điều dưỡng
+MAU-054,Hoàng Minh An,Khoa Thần kinh
+MAU-055,Võ Hữu Hòa,Khoa Phụ sản
+MAU-056,Đặng Văn Thảo,Khoa Khám bệnh
+MAU-057,Bùi Ngọc Dũng,Khoa Dược
+MAU-058,Đỗ Thu Mai,Khoa Xét nghiệm
+MAU-059,Huỳnh Thị Yến,Khoa Cấp cứu
+MAU-060,Nguyễn Thanh Hạnh,Phòng Hành chính
+MAU-061,Trần Quốc Tâm,Phòng Điều dưỡng
+MAU-062,Lê Minh Châu,Khoa Thần kinh
+MAU-063,Phạm Hữu Linh,Khoa Phụ sản
+MAU-064,Hoàng Văn Tuấn,Khoa Khám bệnh
+MAU-065,Võ Ngọc Hải,Khoa Dược
+MAU-066,Đặng Thu Phúc,Khoa Xét nghiệm
+MAU-067,Bùi Thị Bình,Khoa Cấp cứu
+MAU-068,Đỗ Thanh Lan,Phòng Hành chính
+MAU-069,Huỳnh Quốc Trang,Phòng Điều dưỡng
+MAU-070,Nguyễn Minh Hà,Khoa Thần kinh
+MAU-071,Trần Hữu Nam,Khoa Phụ sản
+MAU-072,Lê Văn An,Khoa Khám bệnh
+MAU-073,Phạm Ngọc Hòa,Khoa Dược
+MAU-074,Hoàng Thu Thảo,Khoa Xét nghiệm
+MAU-075,Võ Thị Dũng,Khoa Cấp cứu
+MAU-076,Đặng Thanh Mai,Phòng Hành chính
+MAU-077,Bùi Quốc Yến,Phòng Điều dưỡng
+MAU-078,Đỗ Minh Hạnh,Khoa Thần kinh
+MAU-079,Huỳnh Hữu Tâm,Khoa Phụ sản
+MAU-080,Nguyễn Văn Châu,Khoa Khám bệnh
+MAU-081,Trần Ngọc Linh,Khoa Dược
+MAU-082,Lê Thu Tuấn,Khoa Xét nghiệm
+MAU-083,Phạm Thị Hải,Khoa Cấp cứu
+MAU-084,Hoàng Thanh Phúc,Phòng Hành chính
+MAU-085,Võ Quốc Bình,Phòng Điều dưỡng
+MAU-086,Đặng Minh Lan,Khoa Thần kinh
+MAU-087,Bùi Hữu Trang,Khoa Phụ sản
+MAU-088,Đỗ Văn Hà,Khoa Khám bệnh
+MAU-089,Huỳnh Ngọc Nam,Khoa Dược
+MAU-090,Nguyễn Thu An,Khoa Xét nghiệm
+MAU-091,Trần Thị Hòa,Khoa Cấp cứu
+MAU-092,Lê Thanh Thảo,Phòng Hành chính
+MAU-093,Phạm Quốc Dũng,Phòng Điều dưỡng
+MAU-094,Hoàng Minh Mai,Khoa Thần kinh
+MAU-095,Võ Hữu Yến,Khoa Phụ sản
+MAU-096,Đặng Văn Hạnh,Khoa Khám bệnh
+MAU-097,Bùi Ngọc Tâm,Khoa Dược
+MAU-098,Đỗ Thu Châu,Khoa Xét nghiệm
+MAU-099,Huỳnh Thị Linh,Khoa Cấp cứu
+MAU-100,Nguyễn Thanh Tuấn,Phòng Hành chính
+MAU-101,Trần Quốc Hải,Phòng Điều dưỡng
+MAU-102,Lê Minh Phúc,Khoa Thần kinh
+MAU-103,Phạm Hữu Bình,Khoa Phụ sản
+MAU-104,Hoàng Văn Lan,Khoa Khám bệnh
+MAU-105,Võ Ngọc Trang,Khoa Dược
+MAU-106,Đặng Thu Hà,Khoa Xét nghiệm
+MAU-107,Bùi Thị Nam,Khoa Cấp cứu
+MAU-108,Đỗ Thanh An,Phòng Hành chính
+MAU-109,Huỳnh Quốc Hòa,Phòng Điều dưỡng
+MAU-110,Nguyễn Minh Thảo,Khoa Thần kinh
+MAU-111,Trần Hữu Dũng,Khoa Phụ sản
+MAU-112,Lê Văn Mai,Khoa Khám bệnh
+MAU-113,Phạm Ngọc Yến,Khoa Dược
+MAU-114,Hoàng Thu Hạnh,Khoa Xét nghiệm
+MAU-115,Võ Thị Tâm,Khoa Cấp cứu
+MAU-116,Đặng Thanh Châu,Phòng Hành chính
+MAU-117,Bùi Quốc Linh,Phòng Điều dưỡng
+MAU-118,Đỗ Minh Tuấn,Khoa Thần kinh
+MAU-119,Huỳnh Hữu Hải,Khoa Phụ sản
+MAU-120,Nguyễn Văn Phúc,Khoa Khám bệnh
+MAU-121,Trần Ngọc Bình,Khoa Dược
+MAU-122,Lê Thu Lan,Khoa Xét nghiệm
+MAU-123,Phạm Thị Trang,Khoa Cấp cứu
+MAU-124,Hoàng Thanh Hà,Phòng Hành chính
+MAU-125,Võ Quốc Nam,Phòng Điều dưỡng
+MAU-126,Đặng Minh An,Khoa Thần kinh
+MAU-127,Bùi Hữu Hòa,Khoa Phụ sản
+MAU-128,Đỗ Văn Thảo,Khoa Khám bệnh
+MAU-129,Huỳnh Ngọc Dũng,Khoa Dược
+MAU-130,Nguyễn Thu Mai,Khoa Xét nghiệm
+MAU-131,Trần Thị Yến,Khoa Cấp cứu
+MAU-132,Lê Thanh Hạnh,Phòng Hành chính
+MAU-133,Phạm Quốc Tâm,Phòng Điều dưỡng
+MAU-134,Hoàng Minh Châu,Khoa Thần kinh
+MAU-135,Võ Hữu Linh,Khoa Phụ sản
+MAU-136,Đặng Văn Tuấn,Khoa Khám bệnh
+MAU-137,Bùi Ngọc Hải,Khoa Dược
+MAU-138,Đỗ Thu Phúc,Khoa Xét nghiệm
+MAU-139,Huỳnh Thị Bình,Khoa Cấp cứu
+MAU-140,Nguyễn Thanh Lan,Phòng Hành chính
+MAU-141,Trần Quốc Trang,Phòng Điều dưỡng
+MAU-142,Lê Minh Hà,Khoa Thần kinh
+MAU-143,Phạm Hữu Nam,Khoa Phụ sản
+MAU-144,Hoàng Văn An,Khoa Khám bệnh
+MAU-145,Võ Ngọc Hòa,Khoa Dược
+MAU-146,Đặng Thu Thảo,Khoa Xét nghiệm
+MAU-147,Bùi Thị Dũng,Khoa Cấp cứu
+MAU-148,Đỗ Thanh Mai,Phòng Hành chính
+MAU-149,Huỳnh Quốc Yến,Phòng Điều dưỡng
+MAU-150,Nguyễn Minh Hạnh,Khoa Thần kinh
+MAU-151,Trần Hữu Tâm,Khoa Phụ sản
+MAU-152,Lê Văn Châu,Khoa Khám bệnh
+MAU-153,Phạm Ngọc Linh,Khoa Dược
+MAU-154,Hoàng Thu Tuấn,Khoa Xét nghiệm
+MAU-155,Võ Thị Hải,Khoa Cấp cứu
+MAU-156,Đặng Thanh Phúc,Phòng Hành chính
+MAU-157,Bùi Quốc Bình,Phòng Điều dưỡng
+MAU-158,Đỗ Minh Lan,Khoa Thần kinh
+MAU-159,Huỳnh Hữu Trang,Khoa Phụ sản
+MAU-160,Nguyễn Văn Hà,Khoa Khám bệnh
+MAU-161,Trần Ngọc Nam,Khoa Dược
+MAU-162,Lê Thu An,Khoa Xét nghiệm
+MAU-163,Phạm Thị Hòa,Khoa Cấp cứu
+MAU-164,Hoàng Thanh Thảo,Phòng Hành chính
+MAU-165,Võ Quốc Dũng,Phòng Điều dưỡng
+MAU-166,Đặng Minh Mai,Khoa Thần kinh
+MAU-167,Bùi Hữu Yến,Khoa Phụ sản
+MAU-168,Đỗ Văn Hạnh,Khoa Khám bệnh
+MAU-169,Huỳnh Ngọc Tâm,Khoa Dược
+MAU-170,Nguyễn Thu Châu,Khoa Xét nghiệm
+MAU-171,Trần Thị Linh,Khoa Cấp cứu
+MAU-172,Lê Thanh Tuấn,Phòng Hành chính
+MAU-173,Phạm Quốc Hải,Phòng Điều dưỡng
+MAU-174,Hoàng Minh Phúc,Khoa Thần kinh
+MAU-175,Võ Hữu Bình,Khoa Phụ sản
+MAU-176,Đặng Văn Lan,Khoa Khám bệnh
+MAU-177,Bùi Ngọc Trang,Khoa Dược
+MAU-178,Đỗ Thu Hà,Khoa Xét nghiệm
+MAU-179,Huỳnh Thị Nam,Khoa Cấp cứu
+MAU-180,Nguyễn Thanh An,Phòng Hành chính
+MAU-181,Trần Quốc Hòa,Phòng Điều dưỡng
+MAU-182,Lê Minh Thảo,Khoa Thần kinh
+MAU-183,Phạm Hữu Dũng,Khoa Phụ sản
+MAU-184,Hoàng Văn Mai,Khoa Khám bệnh
+MAU-185,Võ Ngọc Yến,Khoa Dược
+MAU-186,Đặng Thu Hạnh,Khoa Xét nghiệm
+MAU-187,Bùi Thị Tâm,Khoa Cấp cứu
+MAU-188,Đỗ Thanh Châu,Phòng Hành chính
+MAU-189,Huỳnh Quốc Linh,Phòng Điều dưỡng
+MAU-190,Nguyễn Minh Tuấn,Khoa Thần kinh
+MAU-191,Trần Hữu Hải,Khoa Phụ sản
+MAU-192,Lê Văn Phúc,Khoa Khám bệnh
+MAU-193,Phạm Ngọc Bình,Khoa Dược
+MAU-194,Hoàng Thu Lan,Khoa Xét nghiệm
+MAU-195,Võ Thị Trang,Khoa Cấp cứu
+MAU-196,Đặng Thanh Hà,Phòng Hành chính
+MAU-197,Bùi Quốc Nam,Phòng Điều dưỡng
+MAU-198,Đỗ Minh An,Khoa Thần kinh
+MAU-199,Huỳnh Hữu Hòa,Khoa Phụ sản
+MAU-200,Nguyễn Văn Thảo,Khoa Khám bệnh
+MAU-201,Trần Ngọc Dũng,Khoa Dược
+MAU-202,Lê Thu Mai,Khoa Xét nghiệm
+MAU-203,Phạm Thị Yến,Khoa Cấp cứu
+MAU-204,Hoàng Thanh Hạnh,Phòng Hành chính
+MAU-205,Võ Quốc Tâm,Phòng Điều dưỡng
+MAU-206,Đặng Minh Châu,Khoa Thần kinh
+MAU-207,Bùi Hữu Linh,Khoa Phụ sản
+MAU-208,Đỗ Văn Tuấn,Khoa Khám bệnh
+MAU-209,Huỳnh Ngọc Hải,Khoa Dược
+MAU-210,Nguyễn Thu Phúc,Khoa Xét nghiệm
+MAU-211,Trần Thị Bình,Khoa Cấp cứu
+MAU-212,Lê Thanh Lan,Phòng Hành chính
+MAU-213,Phạm Quốc Trang,Phòng Điều dưỡng
+MAU-214,Hoàng Minh Hà,Khoa Thần kinh
+MAU-215,Võ Hữu Nam,Khoa Phụ sản
+MAU-216,Đặng Văn An,Khoa Khám bệnh
+MAU-217,Bùi Ngọc Hòa,Khoa Dược
+MAU-218,Đỗ Thu Thảo,Khoa Xét nghiệm
+MAU-219,Huỳnh Thị Dũng,Khoa Cấp cứu
+MAU-220,Nguyễn Thanh Mai,Phòng Hành chính
+MAU-221,Trần Quốc Yến,Phòng Điều dưỡng
+MAU-222,Lê Minh Hạnh,Khoa Thần kinh
+MAU-223,Phạm Hữu Tâm,Khoa Phụ sản
+MAU-224,Hoàng Văn Châu,Khoa Khám bệnh
+MAU-225,Võ Ngọc Linh,Khoa Dược
+MAU-226,Đặng Thu Tuấn,Khoa Xét nghiệm
+MAU-227,Bùi Thị Hải,Khoa Cấp cứu
+MAU-228,Đỗ Thanh Phúc,Phòng Hành chính
+MAU-229,Huỳnh Quốc Bình,Phòng Điều dưỡng
+MAU-230,Nguyễn Minh Lan,Khoa Thần kinh
+MAU-231,Trần Hữu Trang,Khoa Phụ sản
+MAU-232,Lê Văn Hà,Khoa Khám bệnh
+MAU-233,Phạm Ngọc Nam,Khoa Dược
+MAU-234,Hoàng Thu An,Khoa Xét nghiệm
+MAU-235,Võ Thị Hòa,Khoa Cấp cứu
+MAU-236,Đặng Thanh Thảo,Phòng Hành chính
+MAU-237,Bùi Quốc Dũng,Phòng Điều dưỡng
+MAU-238,Đỗ Minh Mai,Khoa Thần kinh
+MAU-239,Huỳnh Hữu Yến,Khoa Phụ sản
+MAU-240,Nguyễn Văn Hạnh,Khoa Khám bệnh
+MAU-241,Trần Ngọc Tâm,Khoa Dược
+MAU-242,Lê Thu Châu,Khoa Xét nghiệm
+MAU-243,Phạm Thị Linh,Khoa Cấp cứu
+MAU-244,Hoàng Thanh Tuấn,Phòng Hành chính
+MAU-245,Võ Quốc Hải,Phòng Điều dưỡng
+MAU-246,Đặng Minh Phúc,Khoa Thần kinh
+MAU-247,Bùi Hữu Bình,Khoa Phụ sản
+MAU-248,Đỗ Văn Lan,Khoa Khám bệnh
+MAU-249,Huỳnh Ngọc Trang,Khoa Dược
+MAU-250,Nguyễn Thu Hà,Khoa Xét nghiệm
+MAU-251,Trần Thị Nam,Khoa Cấp cứu
+MAU-252,Lê Thanh An,Phòng Hành chính
+MAU-253,Phạm Quốc Hòa,Phòng Điều dưỡng
+MAU-254,Hoàng Minh Thảo,Khoa Thần kinh
+MAU-255,Võ Hữu Dũng,Khoa Phụ sản
+MAU-256,Đặng Văn Mai,Khoa Khám bệnh
+MAU-257,Bùi Ngọc Yến,Khoa Dược
+MAU-258,Đỗ Thu Hạnh,Khoa Xét nghiệm
+MAU-259,Huỳnh Thị Tâm,Khoa Cấp cứu
+MAU-260,Nguyễn Thanh Châu,Phòng Hành chính
+MAU-261,Trần Quốc Linh,Phòng Điều dưỡng
+MAU-262,Lê Minh Tuấn,Khoa Thần kinh
+MAU-263,Phạm Hữu Hải,Khoa Phụ sản
+MAU-264,Hoàng Văn Phúc,Khoa Khám bệnh
+MAU-265,Võ Ngọc Bình,Khoa Dược
+MAU-266,Đặng Thu Lan,Khoa Xét nghiệm
+MAU-267,Bùi Thị Trang,Khoa Cấp cứu
+MAU-268,Đỗ Thanh Hà,Phòng Hành chính
+MAU-269,Huỳnh Quốc Nam,Phòng Điều dưỡng
+MAU-270,Nguyễn Minh An,Khoa Thần kinh
+MAU-271,Trần Hữu Hòa,Khoa Phụ sản
+MAU-272,Lê Văn Thảo,Khoa Khám bệnh
+MAU-273,Phạm Ngọc Dũng,Khoa Dược
+MAU-274,Hoàng Thu Mai,Khoa Xét nghiệm
+MAU-275,Võ Thị Yến,Khoa Cấp cứu
+MAU-276,Đặng Thanh Hạnh,Phòng Hành chính
+MAU-277,Bùi Quốc Tâm,Phòng Điều dưỡng
+MAU-278,Đỗ Minh Châu,Khoa Thần kinh
+MAU-279,Huỳnh Hữu Linh,Khoa Phụ sản
+MAU-280,Nguyễn Văn Tuấn,Khoa Khám bệnh
+MAU-281,Trần Ngọc Hải,Khoa Dược
+MAU-282,Lê Thu Phúc,Khoa Xét nghiệm
+MAU-283,Phạm Thị Bình,Khoa Cấp cứu
+MAU-284,Hoàng Thanh Lan,Phòng Hành chính
+MAU-285,Võ Quốc Trang,Phòng Điều dưỡng
+MAU-286,Đặng Minh Hà,Khoa Thần kinh
+MAU-287,Bùi Hữu Nam,Khoa Phụ sản
+MAU-288,Đỗ Văn An,Khoa Khám bệnh
+MAU-289,Huỳnh Ngọc Hòa,Khoa Dược
+MAU-290,Nguyễn Thu Thảo,Khoa Xét nghiệm
+MAU-291,Trần Thị Dũng,Khoa Cấp cứu
+MAU-292,Lê Thanh Mai,Phòng Hành chính
+MAU-293,Phạm Quốc Yến,Phòng Điều dưỡng
+MAU-294,Hoàng Minh Hạnh,Khoa Thần kinh
+MAU-295,Võ Hữu Tâm,Khoa Phụ sản
+MAU-296,Đặng Văn Châu,Khoa Khám bệnh
+MAU-297,Bùi Ngọc Linh,Khoa Dược
+MAU-298,Đỗ Thu Tuấn,Khoa Xét nghiệm
+MAU-299,Huỳnh Thị Hải,Khoa Cấp cứu
+MAU-300,Nguyễn Thanh Phúc,Phòng Hành chính
+MAU-301,Trần Quốc Bình,Phòng Điều dưỡng
+MAU-302,Lê Minh Lan,Khoa Thần kinh
+MAU-303,Phạm Hữu Trang,Khoa Phụ sản
+MAU-304,Hoàng Văn Hà,Khoa Khám bệnh
+MAU-305,Võ Ngọc Nam,Khoa Dược
+MAU-306,Đặng Thu An,Khoa Xét nghiệm
+MAU-307,Bùi Thị Hòa,Khoa Cấp cứu
+MAU-308,Đỗ Thanh Thảo,Phòng Hành chính
+MAU-309,Huỳnh Quốc Dũng,Phòng Điều dưỡng
+MAU-310,Nguyễn Minh Mai,Khoa Thần kinh
+MAU-311,Trần Hữu Yến,Khoa Phụ sản
+MAU-312,Lê Văn Hạnh,Khoa Khám bệnh
+MAU-313,Phạm Ngọc Tâm,Khoa Dược
+MAU-314,Hoàng Thu Châu,Khoa Xét nghiệm
+MAU-315,Võ Thị Linh,Khoa Cấp cứu
+MAU-316,Đặng Thanh Tuấn,Phòng Hành chính
+MAU-317,Bùi Quốc Hải,Phòng Điều dưỡng
+MAU-318,Đỗ Minh Phúc,Khoa Thần kinh
+MAU-319,Huỳnh Hữu Bình,Khoa Phụ sản
+MAU-320,Nguyễn Văn Lan,Khoa Khám bệnh

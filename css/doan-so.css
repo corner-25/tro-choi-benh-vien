@@ -1,0 +1,66 @@
+/* Đoán con số bệnh viện: sân khấu bảng lật số cơ khí + thước đo Radar trực quan. */
+.ds-luoi { grid-template-columns: 1.4fr 1fr; }
+.ds-cau-so { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; max-height: 520px; overflow: auto; }
+.cs-dong { padding: 14px; border: 1px solid var(--vien); border-radius: 12px; background: #fbfcfd; display: grid; gap: 8px; }
+.cs-dau { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.cs-stt { font: 800 0.85rem var(--mono); color: var(--xanh); }
+.cs-hang-so { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cs-dong input { padding: 8px 10px !important; font-size: 0.94rem !important; }
+.nut-nho { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--vien-dam); background: #fff; color: var(--chu); font: 700 1rem var(--font); cursor: pointer; }
+.nut-nho:hover:not(:disabled) { border-color: var(--xanh); background: #f1f5ff; }
+.nut-nho:disabled { opacity: 0.35; cursor: not-allowed; }
+.nut-xoa:hover:not(:disabled) { border-color: var(--do); background: #fff3f3; color: var(--do); }
+
+/* ── Sân khấu ── */
+.dso-san-khau { position: fixed; inset: 0; overflow: auto; display: grid; grid-template-rows: auto 1fr auto; padding: 18px 36px 22px; gap: 14px; background: var(--nen); }
+.dso-nen { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.dso-nen span { position: absolute; border-radius: 50%; filter: blur(85px); opacity: 0.5; animation: dsoTroi 14s ease-in-out infinite alternate; }
+.dso-nen span:first-child { width: 50vw; height: 50vw; left: -12vw; top: -18vw; background: #7dd3fc; }
+.dso-nen span:last-child { width: 46vw; height: 46vw; right: -10vw; bottom: -16vw; background: #e4ff8a; animation-delay: -6s; }
+@keyframes dsoTroi { from { transform: translate(0, 0) scale(1); } to { transform: translate(5vw, 4vw) scale(1.1); } }
+
+.dso-dau, .dso-trung-tam, .dso-chan { position: relative; z-index: 1; }
+.dso-dau { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.dso-trai { display: flex; align-items: center; gap: 18px; }
+.dso-chi-so { margin: 2px 0 0; font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem); font-weight: 850; letter-spacing: -0.02em; }
+
+.dso-trung-tam { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; max-width: 1240px; width: 100%; margin: 0 auto; text-align: center; }
+.dso-cau-hoi { margin: 0; font-size: clamp(1.55rem, 1rem + 1.8vw, 2.65rem); font-weight: 850; line-height: 1.22; letter-spacing: -0.02em; max-width: 38ch; }
+
+/* ── Cụm bảng lật số cơ khí sân vận động ── */
+.dso-khung-so { display: inline-flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 28px; border-radius: 26px; background: linear-gradient(180deg, #1b263d, #0c1322); box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 34px 74px -28px rgba(12,19,34,0.65); transition: box-shadow 300ms, transform 300ms var(--chuyen); }
+.dso-khung-so.da-mo { box-shadow: 0 0 0 4px var(--chanh), 0 38px 80px -24px rgba(101,163,13,0.6); transform: scale(1.02); }
+.dso-cac-o { display: flex; align-items: center; gap: 10px; }
+.o-chu-so { position: relative; width: clamp(58px, 7.5vw, 94px); height: clamp(84px, 11.5vh, 128px); border-radius: 14px; background: linear-gradient(180deg, #e8edf5 0%, #ffffff 22%, #ffffff 78%, #e4eaf3 100%); color: var(--chu); display: grid; place-items: center; font: 900 clamp(3rem, 5.2vw, 5.2rem)/1 var(--mono); box-shadow: 0 2px 0 rgba(255,255,255,0.7) inset, 0 -3px 0 rgba(12,19,34,0.12) inset; overflow: hidden; }
+.o-chu-so::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(12,19,34,0.1); pointer-events: none; }
+.o-chu-so.dang-quay span { filter: blur(2px); animation: rungSo 90ms linear infinite; }
+@keyframes rungSo { 0% { transform: translateY(-4px); } 50% { transform: translateY(4px); } 100% { transform: translateY(-4px); } }
+.o-chu-so.da-chot { background: linear-gradient(180deg, #f3ffc4, #d4ff3a); animation: chotO 460ms var(--chuyen); }
+@keyframes chotO { 0% { transform: scale(1.14); box-shadow: 0 0 0 0 rgba(212,255,58,0.9); } 100% { transform: scale(1); box-shadow: 0 0 0 12px rgba(212,255,58,0); } }
+.o-dau-cham { font: 900 clamp(2.6rem, 4.5vw, 4.5rem)/1 var(--mono); color: var(--chanh); padding: 0 2px; align-self: flex-end; margin-bottom: 6px; }
+.dso-don-vi { margin: 0; font-size: clamp(1.05rem, 0.85rem + 0.7vw, 1.45rem); font-weight: 700; color: rgba(255,255,255,0.82); min-height: 1.2em; }
+
+/* ── Thước đo Radar ── */
+.dso-khung-thuoc { width: 100%; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.95); border-radius: 20px; padding: 10px 14px; box-shadow: var(--bong); }
+#thuoc-canvas { width: 100%; height: 172px; display: block; }
+
+.dso-ghi-chu { margin: 0; padding: 12px 22px; border-radius: 14px; background: rgba(255,255,255,0.96); border-left: 6px solid var(--chanh-dam); box-shadow: var(--bong); font-size: 1.12rem; font-weight: 650; max-width: 78ch; animation: dsoHien 400ms var(--chuyen); }
+@keyframes dsoHien { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.dso-cac-khu { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; width: 100%; }
+.khu-o { background: rgba(255,255,255,0.95); border: 2px solid var(--vien-dam); border-radius: 16px; padding: 12px 16px; box-shadow: var(--bong); text-align: left; display: grid; gap: 6px; transition: border-color 240ms, background-color 240ms, transform 260ms var(--chuyen); }
+.khu-o.gan-nhat { border-color: var(--chanh-dam); background: linear-gradient(135deg, var(--chanh), #f3ffc4 60%, #ffffff); transform: translateY(-5px) scale(1.02); box-shadow: 0 22px 50px -24px rgba(101,163,13,0.75); }
+.khu-dau { display: flex; justify-content: space-between; align-items: baseline; }
+.khu-ten { font-weight: 850; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 8px; }
+.khu-cham { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.khu-diem { font: 850 1.05rem var(--mono); color: var(--xanh); }
+.khu-nhap { font: 850 1.45rem var(--mono) !important; text-align: center; padding: 7px 10px !important; }
+.khu-lech { margin: 0; font: 750 0.9rem var(--mono); color: var(--chu-phu); min-height: 1.25em; }
+.khu-o.gan-nhat .khu-lech { color: #2d3a12; }
+
+.dso-chan { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 1240px; width: 100%; margin: 0 auto; }
+#phao-dso { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 6; }
+
+@media (max-width: 960px) {
+  .ds-luoi, .cs-hang-so { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đua vịt</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070b14'/%3E%3Cellipse cx='28' cy='38' rx='18' ry='11' fill='%23ffe27a'/%3E%3Ccircle cx='41' cy='25' r='9' fill='%23ffe27a'/%3E%3Cpath d='M49 23l8 2-8 3z' fill='%23ff8a1f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/dua-vit.css">
+</head>
+<body>
+  <!-- ── Màn chuẩn bị (bàn điều khiển của MC) ── -->
+  <main id="man-chuan-bi" class="man chuan-bi" aria-labelledby="tieu-de-chuan-bi">
+    <header class="cb-dau">
+      <a href="index.html" class="ve-cong" aria-label="Về cổng trò chơi"><img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="logo" width="220" height="47"></a>
+      <div class="cb-tieu-de">
+        <p class="nhan-nho"><a href="index.html" class="lien-ket-cong">Cổng trò chơi</a> · <span id="ten-su-kien"></span></p>
+        <h1 id="tieu-de-chuan-bi">Đua vịt</h1>
+      </div>
+      <dl class="tong-ket" aria-label="Tình trạng người chơi">
+        <div><dt>Người chơi</dt><dd id="so-nguoi">0</dd></div>
+        <div><dt>Còn được đua</dt><dd id="so-con">0</dd></div>
+        <div><dt>Đã thắng</dt><dd id="so-thang">0</dd></div>
+      </dl>
+    </header>
+
+    <div class="cb-luoi">
+      <section class="the" aria-labelledby="h-cai-dat">
+        <h2 id="h-cai-dat"><span class="so-buoc">01</span>Cài đặt lượt đua</h2>
+        <p id="goi-y-danh-sach" class="trang-thai canh-bao" hidden>Chưa có danh sách người chơi. <a href="index.html#danh-sach">Nạp danh sách ở cổng trò chơi</a>.</p>
+        <div class="hai-cot">
+          <div>
+            <label class="nhan" for="o-che-do">Chế độ đua</label>
+            <select id="o-che-do">
+              <option value="ca-nhan" selected>Đua cá nhân (toàn bộ danh sách)</option>
+              <option value="theo-bang">Đua theo bảng (Vòng loại → Chung kết)</option>
+              <option value="don-vi">Đua theo đơn vị (mỗi khoa/phòng 1 vịt)</option>
+            </select>
+          </div>
+          <div>
+            <label class="nhan" for="o-boi-canh">Bối cảnh đường đua (đổi theo mùa)</label>
+            <select id="o-boi-canh">
+              <option value="vit" selected>Đua vịt trên sông</option>
+              <option value="khinh-khi-cau">Đường bay Khinh khí cầu</option>
+              <option value="thuyen-rong">Đua Thuyền rồng lễ hội</option>
+            </select>
+          </div>
+        </div>
+        <div class="hai-cot">
+          <div>
+            <label class="nhan" for="o-thoi-gian">Thời gian mỗi lượt</label>
+            <select id="o-thoi-gian">
+              <option value="20">20 giây</option>
+              <option value="30" selected>30 giây</option>
+              <option value="45">45 giây</option>
+              <option value="60">60 giây</option>
+            </select>
+          </div>
+          <div>
+            <label class="nhan" for="o-so-thang">Số người / đơn vị thắng mỗi lượt</label>
+            <select id="o-so-thang">
+              <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option>
+              <option value="5">5</option><option value="10">10</option>
+            </select>
+          </div>
+        </div>
+        <div id="khung-so-bang" hidden>
+          <label class="nhan" for="o-so-bang">Số bảng vòng loại</label>
+          <select id="o-so-bang">
+            <option value="2">2 bảng</option>
+            <option value="4">4 bảng</option>
+            <option value="6" selected>6 bảng</option>
+            <option value="8">8 bảng</option>
+          </select>
+        </div>
+        <div id="khung-bang-dau" class="khung-bang-dau" hidden>
+          <p class="tien-do-bang" id="tien-do-bang"></p>
+          <div class="hang-nut">
+            <button type="button" id="nut-chia-bang" class="nut nut-vien">Chia bảng mới</button>
+          </div>
+        </div>
+        <p id="goi-y-don-vi" class="trang-thai canh-bao" hidden></p>
+        <label class="hop-chon"><input id="o-loai-thang" type="checkbox" checked><span>Người đã thắng không đua ở lượt sau</span></label>
+        <label class="hop-chon"><input id="o-su-kien-bv" type="checkbox" checked><span>Sự kiện phong cách bệnh viện (kẹt thang máy, tiếp sức…)</span></label>
+        <label class="hop-chon"><input id="o-vit-cuoi" type="checkbox"><span>Công bố thêm giải vui: Vịt về cuối</span></label>
+        <label class="hop-chon"><input id="o-am-thanh" type="checkbox" checked><span>Âm thanh</span></label>
+        <button type="button" id="nut-bat-dau" class="nut nut-chinh nut-to" disabled><span>Bắt đầu đua</span><kbd>Space</kbd></button>
+      </section>
+
+      <section class="the" aria-labelledby="h-ket-qua">
+        <h2 id="h-ket-qua"><span class="so-buoc">02</span>Kết quả và danh sách</h2>
+        <p class="goi-y">Danh sách người chơi dùng chung cho mọi trò, quản lý ở trang chủ cổng trò chơi. Kết quả từng lượt lưu trên máy này và tải được thành file Excel để làm biên bản.</p>
+        <div class="hang-nut">
+          <button type="button" id="nut-lich-su" class="nut nut-vien">Lịch sử và xuất kết quả</button>
+          <a href="index.html#danh-sach" class="nut nut-vien">Quản lý danh sách người chơi</a>
+        </div>
+        <div class="hang-nut">
+          <button type="button" id="nut-lam-lai" class="nut nut-chu nut-nguy">Xóa lịch sử, cho mọi người đua lại</button>
+        </div>
+      </section>
+    </div>
+    <p class="phim-tat"><kbd>Space</kbd> bắt đầu, lượt tiếp <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>P</kbd> tạm dừng <kbd>Esc</kbd> về bàn điều khiển</p>
+  </main>
+
+  <!-- ── Màn đua ── -->
+  <section id="man-dua" class="man dua" aria-label="Đường đua" hidden>
+    <canvas id="san" aria-hidden="true"></canvas>
+    <header class="hud-tren">
+      <div class="hud-trai">
+        <img src="assets/logo.png" alt="" class="logo-nho" width="150" height="32">
+        <div>
+          <p class="nhan-nho" id="dua-ten"></p>
+          <p class="hud-luot"><span class="truc-tiep" aria-hidden="true"></span><span id="dua-luot"></span></p>
+        </div>
+      </div>
+      <div class="hud-phai">
+        <p class="hud-con-lai" id="dua-con-lai"></p>
+        <p class="hud-gio" id="dua-gio">00:00.0</p>
+      </div>
+    </header>
+    <aside class="bang-xh" aria-label="Dẫn đầu">
+      <h3><span class="truc-tiep" aria-hidden="true"></span>Dẫn đầu</h3>
+      <ol id="bang-xh"></ol>
+    </aside>
+    <footer class="hud-duoi">
+      <p id="binh-luan" class="binh-luan" aria-live="polite"></p>
+      <canvas id="tien-do" class="tien-do" aria-hidden="true"></canvas>
+    </footer>
+    <div id="chip-anh" class="chip-anh" hidden>Ảnh về đích · quay chậm</div>
+    <div id="dem-nguoc" class="dem-nguoc" aria-live="assertive" hidden>
+      <svg viewBox="0 0 200 200" class="vong" aria-hidden="true"><circle cx="100" cy="100" r="90"/></svg>
+      <span id="dem-so"></span>
+    </div>
+  </section>
+
+  <!-- ── Công bố kết quả ── -->
+  <section id="man-ket-qua" class="man ket-qua" aria-labelledby="kq-tieu-de" hidden>
+    <div class="den-san-khau" aria-hidden="true"><span></span><span></span><span></span></div>
+    <canvas id="phao-giay" aria-hidden="true"></canvas>
+    <div class="kq-khung">
+      <p class="nhan-nho" id="kq-luot"></p>
+      <h2 id="kq-tieu-de">Về đích đầu tiên</h2>
+      <ol id="kq-danh-sach" class="kq-danh-sach"></ol>
+      <div class="hang-nut hang-giua">
+        <button type="button" id="nut-tiep" class="nut nut-chinh nut-to nut-hep" disabled><span>Đua lượt tiếp</span><kbd>Space</kbd></button>
+        <button type="button" id="nut-vong-hai" class="nut nut-vien" hidden>Đua vòng 2 trong đơn vị thắng</button>
+        <button type="button" id="nut-ve" class="nut nut-vien">Về bàn điều khiển</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Lịch sử ── -->
+  <dialog id="hop-lich-su" aria-labelledby="ls-tieu-de">
+    <h2 id="ls-tieu-de">Lịch sử các lượt đua</h2>
+    <div id="ls-noi-dung" class="ls-noi-dung"></div>
+    <div class="hang-nut">
+      <button type="button" id="nut-xuat" class="nut nut-chinh">Tải file kết quả (CSV mở bằng Excel)</button>
+      <button type="button" id="nut-in-bien-ban" class="nut nut-vien">In biên bản (PDF)</button>
+      <button type="button" id="nut-dong-ls" class="nut nut-vien">Đóng</button>
+    </div>
+  </dialog>
+
+  <script src="js/chung/luu-tru.js" defer></script>
+  <script src="js/chung/bien-ban.js" defer></script>
+  <script src="js/chung/am-thanh.js" defer></script>
+  <script src="js/chung/phao.js" defer></script>
+  <script src="js/chung/umc-logo.js" defer></script>
+  <script src="js/dua-vit/dua.js" defer></script>
+  <script src="js/dua-vit/ve-nen.js" defer></script>
+  <script src="js/dua-vit/ve-vit.js" defer></script>
+  <script src="js/dua-vit/ve.js" defer></script>
+  <script src="js/dua-vit/binh-luan.js" defer></script>
+  <script src="js/dua-vit/luot-dua.js" defer></script>
+  <script src="js/dua-vit/ket-qua.js" defer></script>
+  <script src="js/dua-vit/app.js" defer></script>
+</body>
+</html>

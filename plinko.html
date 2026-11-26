@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thả bi Plinko – Tháp bóng may mắn</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c1322'/%3E%3Ccircle cx='32' cy='18' r='6' fill='%23d4ff3a'/%3E%3Ccircle cx='22' cy='34' r='4' fill='%23fff'/%3E%3Ccircle cx='42' cy='34' r='4' fill='%23fff'/%3E%3Ccircle cx='32' cy='48' r='6' fill='%230b4fd6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/plinko.css">
+</head>
+<body>
+  <main id="man-chuan-bi" class="man chuan-bi" aria-labelledby="tieu-de-chuan-bi">
+    <header class="cb-dau">
+      <a href="index.html" class="ve-cong" aria-label="Về cổng trò chơi"><img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="logo" width="220" height="47"></a>
+      <div class="cb-tieu-de">
+        <p class="nhan-nho"><a href="index.html" class="lien-ket-cong">Cổng trò chơi</a> · <span class="ten-su-kien"></span></p>
+        <h1 id="tieu-de-chuan-bi">Thả bi Plinko</h1>
+      </div>
+      <dl class="tong-ket" aria-label="Tình trạng người chơi">
+        <div><dt>Người chơi</dt><dd id="so-nguoi">0</dd></div>
+        <div><dt>Còn được thả</dt><dd id="so-con">0</dd></div>
+        <div><dt>Lượt đã chơi</dt><dd id="so-luot">0</dd></div>
+      </dl>
+    </header>
+
+    <div class="cb-luoi">
+      <section class="the" aria-labelledby="h-cai-dat">
+        <h2 id="h-cai-dat"><span class="so-buoc">01</span>Cài đặt lượt thả bi</h2>
+        <p id="goi-y-danh-sach" class="trang-thai canh-bao" hidden>Chưa có danh sách người chơi. <a href="index.html#danh-sach">Nạp danh sách ở cổng trò chơi</a>.</p>
+        <div>
+          <label class="nhan" for="o-nguon">Đối tượng thả bi</label>
+          <select id="o-nguon">
+            <option value="ca-nhan" selected>Cá nhân (bốc đều từ danh sách chung)</option>
+            <option value="don-vi">Đơn vị (mỗi khoa/phòng 1 quả bóng)</option>
+          </select>
+        </div>
+        <div class="hai-cot">
+          <div>
+            <label class="nhan" for="o-che-do">Chế độ thả bóng</label>
+            <select id="o-che-do">
+              <option value="mua-bong" selected>Mưa bóng (5–15 bi)</option>
+              <option value="bi-vang">Bi Vàng Chung Kết (1–3 bi đại)</option>
+            </select>
+          </div>
+          <div>
+            <label class="nhan" for="o-so-bi">Số quả bóng mỗi lượt thả</label>
+            <select id="o-so-bi">
+              <option value="5">5 quả bóng</option>
+              <option value="10" selected>10 quả bóng</option>
+              <option value="15">15 quả bóng</option>
+            </select>
+          </div>
+        </div>
+        <label class="hop-chon"><input id="o-loai-trung" type="checkbox" checked><span>Người đã thả bóng không lặp lại ở lượt sau</span></label>
+        <label class="hop-chon"><input id="o-am-thanh" type="checkbox" checked><span>Âm thanh</span></label>
+        <button type="button" id="nut-vao" class="nut nut-chinh nut-to" disabled><span>Mở sân khấu Thả bi Plinko</span><kbd>Space</kbd></button>
+      </section>
+
+      <section class="the" aria-labelledby="h-ket-qua">
+        <h2 id="h-ket-qua"><span class="so-buoc">02</span>Kết quả và biên bản</h2>
+        <p class="goi-y">Mỗi quả bóng mang mã nhân viên (hoặc tên khoa/phòng) nảy cơ khí qua rừng chốt phát sáng, 2 tấm bật lò xo và 6 trụ vách ngăn đáy. Hội trường giơ tay chọn cổng thả <b>Trái – Giữa – Phải</b>; nếu lượt trước chưa ai trúng, cửa <b>GIẢI ĐẶC BIỆT</b> tự động mở rộng <b>1,35×</b> ở lượt kế tiếp.</p>
+        <div class="hang-nut">
+          <button type="button" id="nut-xuat" class="nut nut-vien">Tải kết quả (CSV mở bằng Excel)</button>
+          <button type="button" id="nut-in-bien-ban" class="nut nut-vien">In biên bản (PDF)</button>
+        </div>
+        <div class="hang-nut">
+          <button type="button" id="nut-lam-lai" class="nut nut-chu nut-nguy">Xóa lịch sử, thả lại từ đầu</button>
+        </div>
+      </section>
+    </div>
+    <p class="phim-tat"><kbd>Space</kbd> thả bóng / đóng vinh danh <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>0</kbd> chọn cổng thả <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>Esc</kbd> về bàn điều khiển</p>
+  </main>
+
+  <section id="man-san-khau" class="man pl-san-khau" aria-label="Sân khấu Thả bi Plinko" hidden>
+    <div class="pl-nen" aria-hidden="true"><span></span><span></span></div>
+    <header class="pl-dau">
+      <div class="pl-trai">
+        <img src="assets/logo.png" alt="" class="logo-nho" width="150" height="32">
+        <div>
+          <p class="nhan-nho ten-su-kien"></p>
+          <p id="sk-luot" class="pl-tieu-de">Tháp bóng may mắn Plinko</p>
+        </div>
+      </div>
+      <div class="pl-dau-phai">
+        <p id="pl-mo-rong" class="pl-mo-rong" hidden>CỬA ĐẶC BIỆT MỞ RỘNG 1,35×</p>
+        <p class="pl-thong-so"><span id="sk-con">0</span> người còn trong danh sách</p>
+      </div>
+    </header>
+
+    <div class="pl-than">
+      <div class="pl-khung-thap">
+        <div id="pl-the-roi" class="pl-the-roi" aria-live="polite">
+          <span id="pl-roi-nhan" class="pl-roi-nhan">TIÊU ĐIỂM ĐANG RƠI</span>
+          <span id="pl-roi-ma" class="pl-roi-ma">---</span>
+          <strong id="pl-roi-ten" class="pl-roi-ten">Sẵn sàng thả bóng</strong>
+          <span id="pl-roi-don-vi" class="pl-roi-don-vi">Chọn cổng thả bên dưới rồi nhấn Space</span>
+        </div>
+
+        <div class="pl-canvas-boc">
+          <canvas id="plinko-canvas" aria-label="Tháp bóng Plinko"></canvas>
+          <div id="pl-dem-nguoc" class="pl-dem-nguoc" hidden aria-live="assertive">
+            <svg class="pl-dem-vong" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="90"></circle>
+            </svg>
+            <span id="pl-dem-so">3</span>
+          </div>
+        </div>
+
+        <div class="pl-dieu-khien">
+          <div id="pl-chon-cong" class="pl-cong-chon" role="group" aria-label="Chọn cổng thả bóng">
+            <button type="button" class="nut nut-vien pl-nut-cong" data-cong="trai"><kbd>1</kbd><span>Trái</span></button>
+            <button type="button" class="nut nut-vien pl-nut-cong" data-cong="giua"><kbd>2</kbd><span>Giữa</span></button>
+            <button type="button" class="nut nut-vien pl-nut-cong" data-cong="phai"><kbd>3</kbd><span>Phải</span></button>
+            <button type="button" class="nut nut-vien pl-nut-cong dang-chon" data-cong="ngau-nhien"><kbd>0</kbd><span>Ngẫu nhiên</span></button>
+          </div>
+          <div class="pl-hanh-dong">
+            <button type="button" id="nut-tha" class="nut nut-chinh nut-to nut-hep"><span>Thả bóng ngay</span><kbd>Space</kbd></button>
+            <button type="button" id="nut-ve" class="nut nut-vien">Về bàn điều khiển <kbd>Esc</kbd></button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="pl-bang-phai" aria-label="Kết quả bóng chạm đáy">
+        <div id="pl-tieu-diem-luot" class="pl-tieu-diem-luot" hidden>
+          <p id="pl-td-giai" class="pl-td-giai">DẪN ĐẦU LƯỢT THẢ</p>
+          <p id="pl-td-ten" class="pl-td-ten"></p>
+          <p class="pl-td-phu"><span id="pl-td-ma" class="pl-td-ma"></span><span id="pl-td-don-vi" class="pl-td-don-vi"></span></p>
+        </div>
+        <h3>Bảng kết quả lượt thả</h3>
+        <ol id="pl-ds-ve" class="pl-ds-ve" aria-live="polite"></ol>
+      </aside>
+    </div>
+
+    <footer class="pl-thanh-duoi">
+      <p id="pl-binh-luan" class="pl-binh-luan" aria-live="polite"></p>
+    </footer>
+
+    <div id="pl-vinh-danh" class="pl-vinh-danh" role="dialog" aria-modal="true" aria-labelledby="pl-vd-ten" hidden>
+      <div class="pl-den-san-khau" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="pl-vd-khung">
+        <p class="nhan-nho">Vinh danh sân khấu · Thả bi Plinko</p>
+        <div id="pl-the-3d" class="pl-the-3d">
+          <div class="pl-the-3d-mat">
+            <p id="pl-vd-hang" class="pl-vd-hang"></p>
+            <h2 id="pl-vd-ten" class="pl-vd-ten"></h2>
+            <p class="pl-vd-phu">
+              <span id="pl-vd-ma" class="pl-vd-ma"></span>
+              <span id="pl-vd-don-vi" class="pl-vd-don-vi"></span>
+            </p>
+            <p id="pl-vd-them" class="pl-vd-them" hidden></p>
+          </div>
+        </div>
+        <div class="hang-nut hang-giua">
+          <button type="button" id="nut-dong-vinh-danh" class="nut nut-chinh nut-to nut-hep"><span>Tiếp tục lượt mới</span><kbd>Space</kbd></button>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="phao-plinko" aria-hidden="true"></canvas>
+  </section>
+
+  <script src="js/chung/luu-tru.js" defer></script>
+  <script src="js/chung/bien-ban.js" defer></script>
+  <script src="js/chung/am-thanh.js" defer></script>
+  <script src="js/chung/phao.js" defer></script>
+  <script src="js/dua-vit/dua.js" defer></script>
+  <script src="js/plinko/plinko.js" defer></script>
+  <script src="js/plinko/ve-plinko.js" defer></script>
+  <script src="js/plinko/app.js" defer></script>
+</body>
+</html>
