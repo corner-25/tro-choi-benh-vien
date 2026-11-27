@@ -223,3 +223,14 @@ test("Đuổi hình bắt chữ: chuẩn hóa tên người trả lời và xế
   ]);
   assert.deepEqual(DuoiHinh.xepHangNguoi([]), []);
 });
+
+test("Đuổi hình bắt chữ: tên sự kiện trên màn hình chờ viết đầy đủ, không viết tắt VC-NLĐ", () => {
+  const day = "Viên chức, Người lao động";
+  assert.equal(DuoiHinh.moRongVietTat("Hội nghị Đại biểu VC-NLĐ 2026"), "Hội nghị Đại biểu " + day + " 2026");
+  assert.equal(DuoiHinh.moRongVietTat("Hội nghị VC - NLĐ"), "Hội nghị " + day);
+  assert.equal(DuoiHinh.moRongVietTat("hội nghị vc-nlđ"), "hội nghị " + day);
+  assert.equal(DuoiHinh.moRongVietTat("Hội nghị VC, NLĐ năm 2026"), "Hội nghị " + day + " năm 2026");
+  assert.equal(DuoiHinh.moRongVietTat("Đại hội NLĐ"), "Đại hội Người lao động");
+  assert.equal(DuoiHinh.moRongVietTat("Tất niên khoa VCB"), "Tất niên khoa VCB"); // không đụng chữ khác
+  assert.equal(DuoiHinh.moRongVietTat(null), "");
+});

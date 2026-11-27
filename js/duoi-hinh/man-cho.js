@@ -92,6 +92,8 @@
    */
   function mo(thongTin) {
     veThongTin(thongTin);
+    // Màn chiếu cho cả hội trường: không để chữ viết tắt trong tên sự kiện
+    $("man-cho").querySelector(".ten-su-kien").textContent = window.DuoiHinh.moRongVietTat(thongTin.tenSuKien || root.LuuTru.docTenSuKien());
     hetLuc = thongTin.phut > 0 ? Date.now() + thongTin.phut * 60000 : 0;
     daBaoHet = false;
     $("man-cho").hidden = false;

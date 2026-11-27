@@ -131,3 +131,8 @@
   .dh-cho::before, .cho-luat li, .cho-tieu-de span::after, .cho-dem span, .cho-dem b { animation: none; }
   .cho-giai-thich { transition: none; }
 }
+/* Màn hẹp: nhường chỗ cho tên sự kiện viết đầy đủ; phím tắt MC đã có ở bàn điều khiển */
+@media (max-width: 1340px) {
+  .cho-phim { display: none; }
+  .cho-thuong-hieu .nhan-nho { white-space: nowrap; }
+}

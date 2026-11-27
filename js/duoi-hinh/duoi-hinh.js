@@ -140,6 +140,16 @@
     return de;
   }
 
+  // ── Tên sự kiện ──
+  var VC_NLD = /(^|[^\p{L}\p{N}])VC\s*[-–,/&]?\s*NLĐ(?![\p{L}\p{N}])/giu;
+  var NLD = /(^|[^\p{L}\p{N}])NLĐ(?![\p{L}\p{N}])/giu;
+  /** Viết đầy đủ chữ viết tắt trong tên sự kiện để chiếu: VC-NLĐ → Viên chức, Người lao động; NLĐ → Người lao động. */
+  function moRongVietTat(ten) {
+    return String(ten == null ? "" : ten)
+      .replace(VC_NLD, function (_, truoc) { return truoc + "Viên chức, Người lao động"; })
+      .replace(NLD, function (_, truoc) { return truoc + "Người lao động"; });
+  }
+
   // ── Người trả lời và vinh danh ──
   /** Gọn khoảng trắng, tối đa 60 ký tự. */
   function chuanTen(ten) { return String(ten == null ? "" : ten).trim().replace(/\s+/g, " ").slice(0, 60); }
@@ -192,7 +202,7 @@
     return 3;
   }
 
-  var api = { chuanHoa: chuanHoa, demTu: demTu, boMau: boMau, tenMucDo: tenMucDo, xepTheoMucDo: xepTheoMucDo, demTheoMuc: demTheoMuc, chiaTheoTong: chiaTheoTong, taoDeThi: taoDeThi, chuanTen: chuanTen, xepHangNguoi: xepHangNguoi, boHoatHoa: boHoatHoa, chonChuGoiY: chonChuGoiY, diemThuong: diemThuong };
+  var api = { chuanHoa: chuanHoa, demTu: demTu, boMau: boMau, tenMucDo: tenMucDo, xepTheoMucDo: xepTheoMucDo, demTheoMuc: demTheoMuc, chiaTheoTong: chiaTheoTong, taoDeThi: taoDeThi, chuanTen: chuanTen, xepHangNguoi: xepHangNguoi, moRongVietTat: moRongVietTat, boHoatHoa: boHoatHoa, chonChuGoiY: chonChuGoiY, diemThuong: diemThuong };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.DuoiHinh = api;
 })(typeof window !== "undefined" ? window : globalThis);

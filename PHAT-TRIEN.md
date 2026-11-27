@@ -342,3 +342,4 @@ Các file cũ của lồng cầu và đuổi hình từng được sao lưu ở 
   - Đồng hồ giờ hiện tại; dải đếm ngược (dưới 1 phút nhấp nháy; hết giờ chuyển nền son "Mời mọi người cùng chơi!" kèm âm báo; MC vẫn tự bấm Space để bắt đầu).
   - **Câu ví dụ THANG MÁY** (không nằm trong bộ thi) tự chạy lặp: mảnh logo lật dần → ô chữ lật → dấu "ĐÚNG" → giải thích, để người lớn tuổi hiểu cách chơi trước.
 - File: `js/duoi-hinh/man-cho.js` (API `ManChoDH.mo/dong/doiPhut`), `css/duoi-hinh-cho.css`. Đã kiểm tra bố cục ở 1920×1080, 1366×768, 1280×720.
+- Màn hình chờ **không hiện chữ viết tắt** trong tên sự kiện: `DuoiHinh.moRongVietTat()` đổi "VC-NLĐ" (cả dạng "VC - NLĐ", "VC, NLĐ", chữ thường) thành "Viên chức, Người lao động" và "NLĐ" đứng riêng thành "Người lao động". Chỉ đổi khi hiển thị, không sửa tên đã lưu. Màn rộng dưới 1340 px ẩn dòng phím tắt MC để tên đầy đủ nằm trên một dòng.
