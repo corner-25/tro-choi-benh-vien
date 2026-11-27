@@ -1045,6 +1045,7 @@
       baoGiai("ok", "Đã dọn toàn bộ ảnh phần thưởng.");
     });
     [["o-quay-nguoc", "quayNguoc"], ["o-an-ten", "anTen"], ["o-phanh-hai-nhip", "phanhHaiNhip"], ["o-mot-giai", "moiNguoiMotGiai"], ["o-loai-vang", "loaiNguoiVang"]].forEach(function (c) {
+      if (!$(c[0])) return; // trang chưa có ô này (vd. o-phanh-hai-nhip): giữ giá trị mặc định, không làm dừng việc gắn sự kiện phía sau
       $(c[0]).addEventListener("change", function () { tt.cauHinh[c[1]] = $(c[0]).checked; luu(); });
     });
     $("o-am-thanh").addEventListener("change", function () { if ($("o-am-thanh").checked !== window.AmThanh.dangBat()) window.AmThanh.batTat(); });

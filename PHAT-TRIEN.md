@@ -327,3 +327,18 @@ Các file cũ của lồng cầu và đuổi hình từng được sao lưu ở 
   - `chung.css`: `label:has(> .an-di) { position: relative; }`.
   - `duoi-hinh.css`: `.dh-dong { position: relative; }`.
   - Đã đo lại 12 trang, không trang nào còn dư.
+
+## 16. Màn hình chờ Đuổi hình bắt chữ – trò chơi chính thức (27/11/2026)
+- Mở từ bàn điều khiển: nút "Mở màn hình chờ" hoặc phím **C**.
+- Trên màn chờ:
+  - **Space** bắt đầu lượt thi mới (vào thẳng sân khấu).
+  - **+ / −** thêm, bớt 1 phút đếm ngược.
+  - **Esc** về bàn điều khiển.
+  - **F** toàn màn hình.
+- Số phút đếm ngược chọn ở ô "Đếm ngược ở màn hình chờ" (0, 3, 5, 10, 15 phút; lưu ở `tt.cauHinh.phutCho`).
+- Nội dung:
+  - Tên trò lớn kiểu tranh Đông Hồ, luật chơi 3 bước (cả cách tính điểm 3/2/1).
+  - Thẻ thông tin lấy từ thiết lập: số câu, chia mức, số đội, thời gian mỗi câu.
+  - Đồng hồ giờ hiện tại; dải đếm ngược (dưới 1 phút nhấp nháy; hết giờ chuyển nền son "Mời mọi người cùng chơi!" kèm âm báo; MC vẫn tự bấm Space để bắt đầu).
+  - **Câu ví dụ THANG MÁY** (không nằm trong bộ thi) tự chạy lặp: mảnh logo lật dần → ô chữ lật → dấu "ĐÚNG" → giải thích, để người lớn tuổi hiểu cách chơi trước.
+- File: `js/duoi-hinh/man-cho.js` (API `ManChoDH.mo/dong/doiPhut`), `css/duoi-hinh-cho.css`. Đã kiểm tra bố cục ở 1920×1080, 1366×768, 1280×720.

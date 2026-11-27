@@ -14,7 +14,8 @@
   var TEN_DOI = ["Đội 1", "Đội 2", "Đội 3", "Đội 4"];
 
   var SO_CAU_MAC_DINH = 10;
-  var tt = { ds: [], cauHinh: { thoiGian: 30, soDoi: 0, deThi: null }, diem: [0, 0, 0, 0], luot: null };
+  var PHUT_CHO = [0, 3, 5, 10, 15];
+  var tt = { ds: [], cauHinh: { thoiGian: 30, soDoi: 0, deThi: null, phutCho: 5 }, diem: [0, 0, 0, 0], luot: null };
   var maChieu = 0; // tăng mỗi lần đổi câu; việc hẹn giờ của câu cũ thấy mã đã đổi thì bỏ qua
   var chieu = []; // các câu của lượt đang chiếu (lấy từ tt.ds theo tt.luot.ids)
   var giaiDoan = "chuan-bi";
@@ -34,6 +35,8 @@
     } else tt.ds = window.DuoiHinh.boMau();
     if (d && d.cauHinh) tt.cauHinh = { thoiGian: [0, 20, 30, 45].indexOf(Number(d.cauHinh.thoiGian)) >= 0 ? Number(d.cauHinh.thoiGian) : 30, soDoi: [0, 2, 3, 4].indexOf(Number(d.cauHinh.soDoi)) >= 0 ? Number(d.cauHinh.soDoi) : 0 };
     if (d && d.cauHinh && d.cauHinh.deThi) tt.cauHinh.deThi = d.cauHinh.deThi;
+    tt.cauHinh.phutCho = d && d.cauHinh && PHUT_CHO.indexOf(Number(d.cauHinh.phutCho)) >= 0 ? Number(d.cauHinh.phutCho) : 5;
+    $("o-phut-cho").value = String(tt.cauHinh.phutCho);
     if (d && d.luot) tt.luot = docLuot(d.luot);
     if (d && Array.isArray(d.diem)) tt.diem = [0, 1, 2, 3].map(function (i) { return Math.max(0, Math.floor(Number(d.diem[i]) || 0)); });
     $("o-thoi-gian").value = String(tt.cauHinh.thoiGian);
@@ -107,6 +110,7 @@
     window.LuuTru.ghi(KHOA, tt);
     $("so-cau").textContent = String(tt.ds.length);
     $("nut-vao").disabled = !tongDeThi();
+    $("nut-man-cho").disabled = !tongDeThi();
     veDeThi();
     capNhatBanDieuKhien();
   }
@@ -384,6 +388,7 @@
     window.AmThanh.moKhoa();
     giaiDoan = "san-khau";
     window.VinhDanhDH.an();
+    window.ManChoDH.dong();
     $("man-chuan-bi").hidden = true;
     $("man-san-khau").hidden = false;
     if (!veTranh) veTranh = window.VeTranh.tao($("dh-canvas"));
@@ -421,7 +426,17 @@
     });
   }
 
+  /** Màn hình chờ chiếu trong lúc khán giả vào chỗ; Space ở đây bắt đầu lượt thi mới. */
+  function moManCho() {
+    if (!tongDeThi()) return;
+    window.AmThanh.moKhoa();
+    giaiDoan = "cho";
+    $("man-chuan-bi").hidden = true;
+    window.ManChoDH.mo({ soCau: tongDeThi(), mucDo: tt.cauHinh.deThi, soDoi: tt.cauHinh.soDoi, thoiGian: tt.cauHinh.thoiGian, phut: tt.cauHinh.phutCho });
+  }
+
   function veChuanBi() {
+    window.ManChoDH.dong();
     dungDongHo();
     if (veTranh) veTranh.dung();
     if (veCu) veCu.dung();
@@ -453,6 +468,8 @@
     $("nut-xoa-diem").addEventListener("click", function () { if (window.confirm("Đưa điểm các đội về 0?")) { tt.diem = [0, 0, 0, 0]; luu(); } });
     $("o-am-thanh").addEventListener("change", function () { if ($("o-am-thanh").checked !== window.AmThanh.dangBat()) window.AmThanh.batTat(); });
     $("nut-vao").addEventListener("click", batDauLuotMoi);
+    $("nut-man-cho").addEventListener("click", moManCho);
+    $("o-phut-cho").addEventListener("change", function () { tt.cauHinh.phutCho = Number($("o-phut-cho").value) || 0; luu(); });
     $("nut-tiep-luot").addEventListener("click", function () { tt.luot = Object.assign({}, tt.luot, { xong: false }); moSanKhau(tt.luot.viTri); });
     $("nut-xem-vinh-danh").addEventListener("click", moVinhDanh);
     $("nut-vinh-danh").addEventListener("click", moVinhDanh);
@@ -483,6 +500,14 @@
       if (e.key === "m" || e.key === "M") { $("o-am-thanh").checked = window.AmThanh.batTat(); return; }
       if (giaiDoan === "chuan-bi") {
         if (e.code === "Space" && !$("nut-vao").disabled) { e.preventDefault(); batDauLuotMoi(); }
+        else if (e.key === "c" || e.key === "C") moManCho();
+        return;
+      }
+      if (giaiDoan === "cho") {
+        if (e.code === "Space" || e.key === "Enter") { e.preventDefault(); batDauLuotMoi(); }
+        else if (e.key === "+" || e.key === "=") window.ManChoDH.doiPhut(1);
+        else if (e.key === "-" || e.key === "_") window.ManChoDH.doiPhut(-1);
+        else if (e.key === "Escape") veChuanBi();
         return;
       }
       if (giaiDoan === "vinh-danh") {

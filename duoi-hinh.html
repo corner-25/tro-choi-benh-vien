@@ -7,6 +7,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b4fd6'/%3E%3Ccircle cx='24' cy='28' r='10' fill='%23fde047'/%3E%3Crect x='34' y='24' width='18' height='22' rx='4' fill='%23d4ff3a'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/chung.css">
   <link rel="stylesheet" href="css/duoi-hinh.css">
+  <link rel="stylesheet" href="css/duoi-hinh-cho.css">
 </head>
 <body>
   <main id="man-chuan-bi" class="man chuan-bi" aria-labelledby="tieu-de-chuan-bi">
@@ -61,6 +62,13 @@
             <select id="o-so-doi"><option value="0">Không chấm điểm</option><option value="2">2 đội</option><option value="3">3 đội</option><option value="4">4 đội</option></select>
           </div>
         </div>
+        <div class="hai-cot dh-hang-cho">
+          <div>
+            <label class="nhan" for="o-phut-cho">Đếm ngược ở màn hình chờ</label>
+            <select id="o-phut-cho"><option value="0">Không đếm ngược</option><option value="3">3 phút</option><option value="5" selected>5 phút</option><option value="10">10 phút</option><option value="15">15 phút</option></select>
+          </div>
+          <button type="button" id="nut-man-cho" class="nut nut-vien dh-nut-cho">Mở màn hình chờ <kbd>C</kbd></button>
+        </div>
         <label class="hop-chon"><input id="o-am-thanh" type="checkbox" checked><span>Âm thanh</span></label>
         <button type="button" id="nut-vao" class="nut nut-chinh nut-to" disabled><span>Bắt đầu lượt thi mới</span><kbd>Space</kbd></button>
         <div class="hang-nut">
@@ -70,7 +78,7 @@
         </div>
       </section>
     </div>
-    <p class="phim-tat"><kbd>Space</kbd> mở hình, gợi ý, lật đáp án <kbd>H</kbd> gợi ý chữ <kbd>N</kbd> ghi tên người trả lời <kbd>V</kbd> vinh danh <kbd>1</kbd>–<kbd>4</kbd> cộng điểm đội <kbd>←</kbd><kbd>→</kbd> chuyển câu <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>Esc</kbd> về bàn điều khiển</p>
+    <p class="phim-tat"><kbd>C</kbd> màn hình chờ <kbd>Space</kbd> mở hình, gợi ý, lật đáp án <kbd>H</kbd> gợi ý chữ <kbd>N</kbd> ghi tên người trả lời <kbd>V</kbd> vinh danh <kbd>1</kbd>–<kbd>4</kbd> cộng điểm đội <kbd>←</kbd><kbd>→</kbd> chuyển câu <kbd>F</kbd> toàn màn hình <kbd>M</kbd> âm thanh <kbd>Esc</kbd> về bàn điều khiển</p>
   </main>
 
   <section id="man-san-khau" class="man dh-san-khau" aria-label="Sân khấu Đuổi hình bắt chữ" hidden>
@@ -118,6 +126,48 @@
     <canvas id="phao-dh" aria-hidden="true"></canvas>
   </section>
 
+  <section id="man-cho" class="man dh-cho" aria-labelledby="cho-tieu-de" hidden>
+    <header class="cho-dau">
+      <div class="cho-thuong-hieu">
+        <img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="cho-logo" width="220" height="47">
+        <p class="nhan-nho ten-su-kien"></p>
+      </div>
+      <div class="cho-goc">
+        <p class="cho-phim"><kbd>Space</kbd> bắt đầu <kbd>+</kbd><kbd>−</kbd> đổi phút <kbd>F</kbd> toàn màn hình <kbd>Esc</kbd> bàn điều khiển</p>
+        <p class="cho-gio" aria-label="Giờ hiện tại"><span id="cho-gio">--:--</span></p>
+      </div>
+    </header>
+
+    <div class="cho-giua">
+      <div class="cho-trai">
+        <p class="cho-nhan">Trò chơi giao lưu</p>
+        <h1 id="cho-tieu-de" class="cho-tieu-de">Đuổi hình <span>bắt chữ</span></h1>
+        <p class="cho-phu">Hai bức tranh ghép lại, đọc thành một từ quen thuộc của bệnh viện.</p>
+        <ol class="cho-luat" aria-label="Cách chơi">
+          <li><b class="cho-so">1</b><div><h2>Nhìn tranh, ghép tên</h2><p>Gọi tên từng hình rồi ghép lại thành một từ.</p></div></li>
+          <li><b class="cho-so">2</b><div><h2>Giơ tay thật nhanh</h2><p>MC mời trả lời và ghi tên người đoán đúng.</p></div></li>
+          <li><b class="cho-so">3</b><div><h2>Đoán sớm, điểm cao</h2><p><b>3 điểm</b> khi tranh còn che · <b>2</b> khi đã mở hết · <b>1</b> khi phải gợi ý chữ.</p></div></li>
+        </ol>
+      </div>
+
+      <figure class="cho-phai" aria-label="Câu đố ví dụ">
+        <figcaption class="cho-vi-du">Ví dụ</figcaption>
+        <div class="cho-khung"><canvas id="cho-canvas" aria-label="Tranh ví dụ: cái thang và bánh răng máy"></canvas></div>
+        <div id="cho-o-chu" class="dh-dap-an-hang cho-o-chu" aria-hidden="true"></div>
+        <p id="cho-giai-thich" class="cho-giai-thich"></p>
+      </figure>
+    </div>
+
+    <footer class="cho-chan">
+      <dl class="cho-thong-tin">
+        <div><dt>Số câu</dt><dd><span id="cho-so-cau">10</span> câu</dd><dd id="cho-muc" class="cho-muc"></dd></div>
+        <div id="cho-doi"><dt>Thi theo đội</dt><dd><span id="cho-doi-so">0</span> đội</dd></div>
+        <div><dt>Thời gian</dt><dd id="cho-thoi-gian" class="cho-nho"></dd></div>
+      </dl>
+      <div id="cho-dem" class="cho-dem" aria-live="polite"><span id="cho-dem-nhan">Trò chơi sắp bắt đầu</span><b id="cho-dem-so"></b></div>
+    </footer>
+  </section>
+
   <section id="man-vinh-danh" class="man dh-vinh-danh" aria-labelledby="vd-tieu-de" hidden>
     <header class="vd-dau">
       <img src="assets/logo.png" alt="Bệnh viện Đại học Y Dược Thành phố Hồ Chí Minh" class="vd-logo" width="220" height="47">
@@ -149,6 +199,7 @@
   <script src="js/duoi-hinh/hinh-them.js" defer></script>
   <script src="js/duoi-hinh/hinh-dep.js" defer></script>
   <script src="js/duoi-hinh/vinh-danh.js" defer></script>
+  <script src="js/duoi-hinh/man-cho.js" defer></script>
   <script src="js/duoi-hinh/app.js" defer></script>
 </body>
 </html>
