@@ -52,10 +52,15 @@
       { mucDo: "de", canhId: "tranh:bang-ca", dapAn: "BĂNG CA", goiY: "2 từ · Đưa người bệnh từ xe cứu thương vào khoa.", giaiThich: "Tảng BĂNG trôi + cái CA = BĂNG CA!" },
       { mucDo: "de", canhId: "tranh:truc-dem", dapAn: "TRỰC ĐÊM", goiY: "2 từ · Ca làm việc thức trắng vì người bệnh.", giaiThich: "TRỰC thăng + trăng sáng ban ĐÊM = TRỰC ĐÊM!" },
       { mucDo: "de", canhId: "tranh:bac-si", dapAn: "BÁC SĨ", goiY: "2 từ · Người khoác áo blouse trắng, cầm ống nghe.", giaiThich: "Cháu khoanh tay chào BÁC + quân SĨ trên bàn cờ tướng = BÁC SĨ!" },
+      { mucDo: "de", canhId: "tranh:dien-tim", dapAn: "ĐIỆN TIM", goiY: "2 từ · Dán mấy miếng điện cực lên ngực, máy in ra đường zíc zắc.", giaiThich: "Cột ĐIỆN + trái TIM = ĐIỆN TIM!" },
+      { mucDo: "de", canhId: "tranh:mat-ca", dapAn: "MẮT CÁ", goiY: "2 từ · Chỗ hay bị trặc khi bước hụt cầu thang.", giaiThich: "Con MẮT + con CÁ chép = MẮT CÁ (chân)!" },
       // ── Vừa: phải nghĩ thêm một bước ──
       { mucDo: "vua", canhId: "tranh:sieu-am", dapAn: "SIÊU ÂM", goiY: "2 từ · Nhìn thấy em bé trước khi chào đời.", giaiThich: "SIÊU nhân + nốt nhạc ngân ÂM thanh = SIÊU ÂM!" },
       { mucDo: "vua", canhId: "tranh:dai-bieu", dapAn: "ĐẠI BIỂU", goiY: "2 từ · Những người đang ngồi trong hội trường hôm nay.", giaiThich: "Chim ĐẠI bàng + BIỂU đồ = ĐẠI BIỂU!" },
       { mucDo: "vua", canhId: "tranh:noi-soi", dapAn: "NỘI SOI", goiY: "2 từ · Nhìn tận bên trong dạ dày mà không cần mổ.", giaiThich: "Cháu gọi bà NỘI + kính lúp SOI con bọ rùa = NỘI SOI!" },
+      { mucDo: "vua", canhId: "tranh:toa-thuoc", dapAn: "TOA THUỐC", goiY: "2 từ · Bác sĩ ghi ra, người bệnh cầm xuống nhà thuốc.", giaiThich: "TOA tàu + vỉ THUỐC = TOA THUỐC!" },
+      { mucDo: "vua", canhId: "tranh:bo-bot", dapAn: "BÓ BỘT", goiY: "2 từ · Gãy tay thì khoa Chấn thương chỉnh hình sẽ làm việc này.", giaiThich: "BÓ hoa + bao BỘT mì = BÓ BỘT!" },
+      { mucDo: "vua", canhId: "tranh:bao-cao", dapAn: "BÁO CÁO", goiY: "2 từ · Cuối tháng khoa phòng nào cũng phải nộp.", giaiThich: "Con BÁO + con CÁO = BÁO CÁO!" },
       // ── Khó: chơi chữ xa hơn ──
       { mucDo: "kho", canhId: "tranh:noi-tru", dapAn: "NỘI TRÚ", goiY: "2 từ · Bác sĩ trẻ ăn ngủ ở bệnh viện suốt mấy năm học.", giaiThich: "Cháu gọi bà NỘI + đứng TRÚ mưa dưới mái hiên = NỘI TRÚ!" },
       { mucDo: "kho", canhId: "tranh:y-ta", dapAn: "Y TÁ", goiY: "2 từ · Cách gọi quen thuộc của người điều dưỡng.", giaiThich: "Chữ Y + một TÁ trứng (12 quả) = Y TÁ!" },
@@ -122,10 +127,25 @@
   }
 
   /**
-   * Tạo đề thi: lấy ngẫu nhiên đúng số câu mỗi mức (tối đa số câu có), xếp dễ → vừa → khó → chưa phân loại.
-   * Trả bản sao từng câu, không sửa bộ gốc.
+   * Trộn lẫn các mức nhưng RẢI ĐỀU: câu thứ k của mức có n câu nhận khóa (k + u) / n (u ngẫu nhiên riêng mỗi mức),
+   * rồi xếp theo khóa. Nhờ vậy dừng sớm ở giữa lượt vẫn đã gặp đủ dễ – vừa – khó, và câu khó không dồn cục.
    */
-  function taoDeThi(ds, soLuong, rng) {
+  function raiDeu(de, ngauNhien) {
+    var nhom = {}, khoa = [];
+    de.forEach(function (c) { var m = mucCua(c); (nhom[m] = nhom[m] || []).push(c); });
+    Object.keys(nhom).forEach(function (m) {
+      var u = ngauNhien(), n = nhom[m].length;
+      nhom[m].forEach(function (c, k) { khoa.push({ c: c, k: (k + u) / n, r: ngauNhien() }); });
+    });
+    khoa.sort(function (a, b) { return a.k - b.k || a.r - b.r; });
+    return khoa.map(function (x) { return x.c; });
+  }
+
+  /**
+   * Tạo đề thi: lấy ngẫu nhiên đúng số câu mỗi mức (tối đa số câu có). thuTu "tron": trộn lẫn các mức, rải đều;
+   * mặc định xếp dễ → vừa → khó → chưa phân loại. Trả bản sao từng câu, không sửa bộ gốc.
+   */
+  function taoDeThi(ds, soLuong, rng, thuTu) {
     var ngauNhien = rng || rngMatMa();
     var de = [];
     CAC_MUC.forEach(function (m) {
@@ -137,7 +157,7 @@
       }
       nhom.slice(0, lay).forEach(function (c) { de.push(Object.assign({}, c)); });
     });
-    return de;
+    return thuTu === "tron" ? raiDeu(de, ngauNhien) : de;
   }
 
   // ── Tên sự kiện ──

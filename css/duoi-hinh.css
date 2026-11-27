@@ -10,7 +10,7 @@
   --dh-go: #7a4b25;
   --dh-go-dam: #4a2a12;
   --dh-tre: #6f9a3c;
-  --dh-serif: Georgia, "Noto Serif", "Times New Roman", serif;
+  --dh-serif: "DH Serif", "Noto Serif", "Times New Roman", serif; /* DH Serif nhúng sẵn (css/phong-chu.css): đủ chữ tiếng Việt trên mọi máy */
 }
 
 /* ── Bàn điều khiển ── */

@@ -97,7 +97,7 @@
       duongNet(c, s, 0.01, null, [(du / s) - 0.23, 0.0, (du / s) - 0.2, 0.0]);
       for (var z = 0; z < 3; z += 1) {
         var y = -s * 0.12 - ((t * 0.5 + z / 3) % 1) * s * 0.3;
-        c.fillStyle = "rgba(29,21,16," + (0.8 - ((t * 0.5 + z / 3) % 1) * 0.7) + ")"; c.font = "700 " + Math.round(s * (0.06 + z * 0.02)) + "px Georgia, serif";
+        c.fillStyle = "rgba(29,21,16," + (0.8 - ((t * 0.5 + z / 3) % 1) * 0.7) + ")"; c.font = "700 " + Math.round(s * (0.06 + z * 0.02)) + "px 'DH Serif', 'Times New Roman', serif";
         c.fillText("z", du - s * 0.16 + z * s * 0.06, y);
       }
     },

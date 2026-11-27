@@ -378,7 +378,7 @@
       ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.2); ctx.scale(tl, tl); ctx.globalAlpha = Math.min(1, p * 1.4) * 0.92;
       ctx.fillStyle = MAU.son; ctx.fillRect(-a, -a, a * 2, a * 2);
       ctx.strokeStyle = "#f8eed6"; ctx.lineWidth = a * 0.07; ctx.strokeRect(-a * 0.82, -a * 0.82, a * 1.64, a * 1.64);
-      ctx.fillStyle = "#f8eed6"; ctx.font = "900 " + Math.round(a * 0.46) + "px Georgia, 'Times New Roman', serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillStyle = "#f8eed6"; ctx.font = "900 " + Math.round(a * 0.46) + "px 'DH Serif', 'Times New Roman', serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
       ctx.fillText("ĐÚNG", 0, a * 0.04);
       ctx.restore();
       if (p >= 1 && !dau.vang) {

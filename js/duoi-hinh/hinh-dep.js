@@ -43,7 +43,7 @@
     c.arcTo(X, Y + H, X, Y, r); c.arcTo(X, Y, X + W, Y, r); c.closePath();
     to(c, "#fffdf6", s, 0.014);
     c.fillStyle = M.den; c.textAlign = "center"; c.textBaseline = "middle";
-    c.font = CHU + Math.round(s * (coChu || 0.07)) + "px Georgia, 'Times New Roman', serif";
+    c.font = CHU + Math.round(s * (coChu || 0.07)) + "px 'DH Serif', 'Times New Roman', serif";
     c.fillText(chu, X + W / 2, Y + H / 2 + s * 0.005);
   }
 
@@ -245,7 +245,7 @@
       c.save(); c.rotate(-0.05);
       chuNhat(c, -s * 0.28, -s * 0.38, s * 0.56, s * 0.76, s * 0.04); to(c, "#fffaf0", s);
       chuNhat(c, -s * 0.22, -s * 0.32, s * 0.44, s * 0.64, s * 0.02); c.strokeStyle = M.son; c.lineWidth = s * 0.012; c.stroke();
-      c.font = "900 " + Math.round(s * 0.6) + "px Georgia, 'Times New Roman', serif"; c.textAlign = "center"; c.textBaseline = "middle";
+      c.font = "900 " + Math.round(s * 0.6) + "px 'DH Serif', 'Times New Roman', serif"; c.textAlign = "center"; c.textBaseline = "middle";
       c.lineWidth = s * 0.03; c.strokeStyle = M.den; c.lineJoin = "round"; c.strokeText("Y", 0, s * 0.03);
       c.fillStyle = M.cham; c.fillText("Y", 0, s * 0.03);
       tron(c, 0, -s * 0.38, s * 0.04); to(c, M.son, s, 0.012);
@@ -263,7 +263,7 @@
       }
       c.save(); c.translate(s * 0.3, -s * 0.3); c.rotate(0.12);
       tron(c, 0, 0, s * 0.11); to(c, M.son, s, 0.016);
-      c.fillStyle = "#fbf3df"; c.font = "800 " + Math.round(s * 0.1) + "px Georgia, serif"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("12", 0, s * 0.005);
+      c.fillStyle = "#fbf3df"; c.font = "800 " + Math.round(s * 0.1) + "px 'DH Serif', 'Times New Roman', serif"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("12", 0, s * 0.005);
       c.restore();
     },
 
@@ -288,7 +288,7 @@
       c.restore();
       for (var z = 0; z < 3; z += 1) {
         var p = (t * 0.45 + z / 3) % 1;
-        c.fillStyle = "rgba(29,21,16," + (0.85 - p * 0.75) + ")"; c.font = "700 " + Math.round(s * (0.06 + z * 0.025)) + "px Georgia, serif";
+        c.fillStyle = "rgba(29,21,16," + (0.85 - p * 0.75) + ")"; c.font = "700 " + Math.round(s * (0.06 + z * 0.025)) + "px 'DH Serif', 'Times New Roman', serif";
         c.fillText("z", -s * 0.2 + z * s * 0.07 + du, -s * 0.12 - p * s * 0.26);
       }
     },

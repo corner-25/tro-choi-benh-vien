@@ -6,6 +6,7 @@
   <title>Đuổi hình bắt chữ</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b4fd6'/%3E%3Ccircle cx='24' cy='28' r='10' fill='%23fde047'/%3E%3Crect x='34' y='24' width='18' height='22' rx='4' fill='%23d4ff3a'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/phong-chu.css">
   <link rel="stylesheet" href="css/duoi-hinh.css">
   <link rel="stylesheet" href="css/duoi-hinh-cho.css">
 </head>
@@ -25,12 +26,12 @@
     <div class="cb-luoi">
       <section class="the" aria-labelledby="h-bo-cau">
         <h2 id="h-bo-cau"><span class="so-buoc">01</span>Bộ câu đố chơi chữ bệnh viện</h2>
-        <p class="goi-y">Hai hình ghép lại đọc thành một từ, vẽ theo lối tranh Đông Hồ: con <b>Công</b> + <b>Đoàn</b> tàu = Công đoàn, xe <b>Tăng</b> + cái <b>Ca</b> = Tăng ca… Có sẵn 10 câu chia 3 mức: 4 câu dễ, 3 câu vừa, 3 câu khó. Thêm câu mới thì tải ảnh câu đố riêng.</p>
+        <p class="goi-y">Hai hình ghép lại đọc thành một từ, vẽ theo lối tranh Đông Hồ: con <b>Công</b> + <b>Đoàn</b> tàu = Công đoàn, xe <b>Tăng</b> + cái <b>Ca</b> = Tăng ca… Có sẵn 15 câu chia 3 mức: 6 câu dễ, 6 câu vừa, 3 câu khó. Thêm câu mới thì tải ảnh câu đố riêng.</p>
         <label class="nhan" for="o-muc-nap">Mức độ khi nạp bộ có sẵn</label>
         <select id="o-muc-nap"><option value="" selected>Cả 3 mức, xếp từ dễ đến khó</option><option value="de">Chỉ câu dễ</option><option value="vua">Chỉ câu vừa</option><option value="kho">Chỉ câu khó</option></select>
         <div class="hang-nut">
           <button type="button" id="nut-them" class="nut nut-vien">Thêm câu đố</button>
-          <button type="button" id="nut-mau" class="nut nut-chu">Nạp 10 câu tranh chơi chữ</button>
+          <button type="button" id="nut-mau" class="nut nut-chu">Nạp 15 câu tranh chơi chữ</button>
           <button type="button" id="nut-xep" class="nut nut-chu">Xếp lại từ dễ đến khó</button>
           <button type="button" id="nut-mau-cu" class="nut nut-chu">Nạp 8 câu hoạt họa bản cũ</button>
         </div>
@@ -50,7 +51,9 @@
             <label class="dh-so" data-muc="kho"><span>Câu khó</span><input id="o-so-kho" type="number" min="0" step="1" inputmode="numeric"><small id="co-kho"></small></label>
             <label class="dh-so" data-muc="khac" id="nhom-so-khac" hidden><span>Chưa phân loại</span><input id="o-so-khac" type="number" min="0" step="1" inputmode="numeric"><small id="co-khac"></small></label>
           </div>
-          <p class="dh-de-thi-ghi">Nhập tổng số câu thì máy tự chia theo tỷ lệ 5 dễ : 3 vừa : 2 khó; muốn khác thì sửa từng mức. Mỗi lượt bốc ngẫu nhiên trong bộ câu và chiếu từ dễ đến khó.</p>
+          <label class="nhan" for="o-thu-tu">Thứ tự câu khi chơi</label>
+          <select id="o-thu-tu"><option value="tron" selected>Trộn lẫn dễ – vừa – khó, rải đều cả lượt</option><option value="de-kho">Từ dễ đến khó</option></select>
+          <p class="dh-de-thi-ghi">Nhập tổng số câu thì máy tự chia theo tỷ lệ 5 dễ : 3 vừa : 2 khó; muốn khác thì sửa từng mức. Mỗi lượt bốc ngẫu nhiên trong bộ câu. Khi trộn lẫn, các mức được rải đều nên dừng sớm vẫn đã có đủ câu dễ, vừa, khó. Muốn kết thúc sớm thì bấm <kbd>V</kbd> để vinh danh.</p>
         </fieldset>
         <div class="hai-cot">
           <div>
@@ -198,6 +201,7 @@
   <script src="js/duoi-hinh/ve-tranh.js" defer></script>
   <script src="js/duoi-hinh/hinh-them.js" defer></script>
   <script src="js/duoi-hinh/hinh-dep.js" defer></script>
+  <script src="js/duoi-hinh/hinh-moi.js" defer></script>
   <script src="js/duoi-hinh/vinh-danh.js" defer></script>
   <script src="js/duoi-hinh/man-cho.js" defer></script>
   <script src="js/duoi-hinh/app.js" defer></script>

@@ -343,3 +343,27 @@ Các file cũ của lồng cầu và đuổi hình từng được sao lưu ở 
   - **Câu ví dụ THANG MÁY** (không nằm trong bộ thi) tự chạy lặp: mảnh logo lật dần → ô chữ lật → dấu "ĐÚNG" → giải thích, để người lớn tuổi hiểu cách chơi trước.
 - File: `js/duoi-hinh/man-cho.js` (API `ManChoDH.mo/dong/doiPhut`), `css/duoi-hinh-cho.css`. Đã kiểm tra bố cục ở 1920×1080, 1366×768, 1280×720.
 - Màn hình chờ **không hiện chữ viết tắt** trong tên sự kiện: `DuoiHinh.moRongVietTat()` đổi "VC-NLĐ" (cả dạng "VC - NLĐ", "VC, NLĐ", chữ thường) thành "Viên chức, Người lao động" và "NLĐ" đứng riêng thành "Người lao động". Chỉ đổi khi hiển thị, không sửa tên đã lưu. Màn rộng dưới 1340 px ẩn dòng phím tắt MC để tên đầy đủ nằm trên một dòng.
+
+## 17. Tăng lên 15 câu, trộn lẫn mức độ, dừng sớm (27/11/2026)
+- Thêm **5 câu mới, hình vẽ mới** trong `js/duoi-hinh/hinh-moi.js` (người dùng thấy các câu cũ chán, không dùng lại):
+  - Dễ: ĐIỆN TIM (cột điện có biển tia sét + trái tim đang đập), MẮT CÁ (con mắt + cá chép).
+  - Vừa: TOA THUỐC (toa tàu + lọ và vỉ thuốc), BÓ BỘT (bó hoa + bao bột mì), BÁO CÁO (con báo + con cáo).
+  - Tránh các từ về chế độ làm việc (tăng ca, chấm công, nghỉ phép) vì có thể nhạy cảm.
+  - Bí ý tưởng thì người dùng cho phép lấy từ **chủ đề xã hội**, không nhất thiết phải là từ bệnh viện.
+- Bộ câu: 15 câu = 6 dễ, 6 vừa, 3 khó. Mặc định mỗi lượt 15 câu.
+- Test mới: mọi câu trong bộ mẫu phải có cặp hình đăng ký trong các file vẽ.
+- **Thứ tự câu** (`tt.cauHinh.thuTu`, ô "Thứ tự câu khi chơi"):
+  - `"tron"` (mặc định): trộn lẫn nhưng rải đều. `DuoiHinh.taoDeThi(ds, soLuong, rng, "tron")` → `raiDeu()`: câu thứ k của mức có n câu nhận khóa (k + u)/n rồi xếp theo khóa. Kết quả: trong 7 câu đầu luôn có câu vừa và câu khó; không có 3 câu khó liền nhau (đã kiểm 200 lần ngẫu nhiên trong test).
+  - `"de-kho"`: xếp từ dễ đến khó như cũ.
+- **Dừng sớm**: bấm V lúc nào cũng vinh danh được. `tt.luot.xaNhat` ghi câu xa nhất đã chiếu; màn vinh danh ghi "Đã chơi 5 / 15 câu" khi dừng sớm.
+
+## 18. Sửa lỗi dấu tiếng Việt bị tách trên máy Windows (27/11/2026)
+- **Triệu chứng** (ảnh chụp màn hình bệnh viện): "Bắt đầu" hiện thành "Bă´t đâ`u", "rồi bấm" thành "rô`i bâ´m".
+- **Nguyên nhân**: chữ có chân dùng Georgia. Georgia trên Windows thiếu chữ tiếng Việt dựng sẵn (ắ, ầ, ồ, ạ…), nên Chrome tách thành chữ gốc + dấu rời và đặt dấu lệch. Trên Mac, Georgia có đủ nên không thấy lỗi.
+- **Cách sửa**: nhúng phông **Noto Serif** (SIL OFL 1.1, giấy phép ở `assets/phong/OFL-NotoSerif.txt`), đặt tên "DH Serif":
+  - Đã cắt còn Latin + tiếng Việt, độ đậm 400–900, 72 KB.
+  - Nhúng dạng data URL trong `css/phong-chu.css` để chạy cả với file:// và không mạng; file gốc ở `assets/phong/dh-serif.woff`.
+  - `--dh-serif` và mọi chữ vẽ trên canvas (bóng nói "Cháu chào … ạ!", dấu "ĐÚNG", chữ Y, nhãn "12") đều dùng "DH Serif".
+- Đã kiểm bằng `CSS.getPlatformFontsForNode` của Chrome: tiêu đề, luật chơi, đếm ngược, gợi ý, ô chữ đáp án đều vẽ bằng phông nhúng, không mượn phông nào của máy.
+- **Quy tắc từ nay**: chữ tiếng Việt không dựa vào phông hệ thống có chân (Georgia, Palatino…). Dùng "DH Serif" hoặc phông không chân của hệ thống (Segoe UI, Arial đều đủ tiếng Việt).
+- Các màn chiếu ra hội trường (sân khấu, màn chờ, vinh danh) viết đầy đủ tên sự kiện qua `DuoiHinh.moRongVietTat`. Bàn điều khiển giữ tên gốc.

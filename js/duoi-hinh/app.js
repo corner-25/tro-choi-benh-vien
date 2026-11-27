@@ -13,9 +13,9 @@
   var KHOA = "duoi-hinh";
   var TEN_DOI = ["Đội 1", "Đội 2", "Đội 3", "Đội 4"];
 
-  var SO_CAU_MAC_DINH = 10;
+  var SO_CAU_MAC_DINH = 15;
   var PHUT_CHO = [0, 3, 5, 10, 15];
-  var tt = { ds: [], cauHinh: { thoiGian: 30, soDoi: 0, deThi: null, phutCho: 5 }, diem: [0, 0, 0, 0], luot: null };
+  var tt = { ds: [], cauHinh: { thoiGian: 30, soDoi: 0, deThi: null, phutCho: 5, thuTu: "tron" }, diem: [0, 0, 0, 0], luot: null };
   var maChieu = 0; // tăng mỗi lần đổi câu; việc hẹn giờ của câu cũ thấy mã đã đổi thì bỏ qua
   var chieu = []; // các câu của lượt đang chiếu (lấy từ tt.ds theo tt.luot.ids)
   var giaiDoan = "chuan-bi";
@@ -37,12 +37,15 @@
     if (d && d.cauHinh && d.cauHinh.deThi) tt.cauHinh.deThi = d.cauHinh.deThi;
     tt.cauHinh.phutCho = d && d.cauHinh && PHUT_CHO.indexOf(Number(d.cauHinh.phutCho)) >= 0 ? Number(d.cauHinh.phutCho) : 5;
     $("o-phut-cho").value = String(tt.cauHinh.phutCho);
+    tt.cauHinh.thuTu = d && d.cauHinh && d.cauHinh.thuTu === "de-kho" ? "de-kho" : "tron";
+    $("o-thu-tu").value = tt.cauHinh.thuTu;
     if (d && d.luot) tt.luot = docLuot(d.luot);
     if (d && Array.isArray(d.diem)) tt.diem = [0, 1, 2, 3].map(function (i) { return Math.max(0, Math.floor(Number(d.diem[i]) || 0)); });
     $("o-thoi-gian").value = String(tt.cauHinh.thoiGian);
     $("o-so-doi").value = String(tt.cauHinh.soDoi);
     var ten = window.LuuTru.docTenSuKien();
-    document.querySelectorAll(".ten-su-kien").forEach(function (el) { el.textContent = ten; });
+    // Màn chiếu cho cả hội trường (sân khấu, vinh danh, màn chờ) viết đầy đủ, không viết tắt VC-NLĐ
+    document.querySelectorAll(".ten-su-kien").forEach(function (el) { el.textContent = el.closest("#man-chuan-bi") ? ten : window.DuoiHinh.moRongVietTat(ten); });
   }
 
   /** Ghi số câu sẽ nạp lên nút theo mức độ đang chọn. */
@@ -61,7 +64,8 @@
       var ten = window.DuoiHinh.chuanTen(kq && kq.ten);
       if (ten) ketQua[id] = { ten: ten, diem: Math.min(3, Math.max(0, Math.floor(Number(kq.diem) || 0))) };
     });
-    return { ids: ids, ketQua: ketQua, viTri: Math.max(0, Math.floor(Number(l.viTri) || 0)), xong: Boolean(l.xong) };
+    var viTri = Math.max(0, Math.floor(Number(l.viTri) || 0));
+    return { ids: ids, ketQua: ketQua, viTri: viTri, xaNhat: Math.max(viTri, Math.floor(Number(l.xaNhat) || 0)), xong: Boolean(l.xong) };
   }
 
   /** Các câu của lượt, tra theo id trong bộ câu; câu đã bị xóa khỏi bộ thì bỏ qua. */
@@ -282,7 +286,7 @@
     if (idx < 0 || idx >= chieu.length) return;
     viTri = idx;
     maChieu += 1;
-    tt.luot = Object.assign({}, tt.luot, { viTri: idx });
+    tt.luot = Object.assign({}, tt.luot, { viTri: idx, xaNhat: Math.max(idx, tt.luot.xaNhat || 0) });
     luu();
     var c = chieu[viTri];
     var daGhi = tt.luot.ketQua[c.id];
@@ -400,8 +404,8 @@
     if (!tongDeThi()) return;
     var coKetQua = tt.luot && !tt.luot.xong && Object.keys(tt.luot.ketQua).length;
     if (coKetQua && !window.confirm("Lượt đang dở đã ghi tên người trả lời. Bắt đầu lượt mới sẽ xóa kết quả lượt đó và đưa điểm các đội về 0. Tiếp tục?")) return;
-    var de = window.DuoiHinh.taoDeThi(tt.ds, tt.cauHinh.deThi);
-    tt.luot = { ids: de.map(function (c) { return c.id; }), ketQua: {}, viTri: 0, xong: false };
+    var de = window.DuoiHinh.taoDeThi(tt.ds, tt.cauHinh.deThi, null, tt.cauHinh.thuTu);
+    tt.luot = { ids: de.map(function (c) { return c.id; }), ketQua: {}, viTri: 0, xaNhat: 0, xong: false };
     tt.diem = [0, 0, 0, 0];
     luu();
     moSanKhau(0);
@@ -414,6 +418,8 @@
     var ketQua = dsLuot.map(function (c) { return tt.luot.ketQua[c.id] || null; });
     var bang = window.DuoiHinh.xepHangNguoi(ketQua);
     var soDung = ketQua.filter(Boolean).length;
+    // Dừng sớm: số câu đã chiếu = câu xa nhất đã tới (hoặc câu xa nhất có người trả lời)
+    var soDaChoi = Math.min(dsLuot.length, Math.max((tt.luot.xaNhat || 0) + 1, ketQua.reduce(function (m, kq, i) { return kq ? i + 1 : m; }, 0)));
     tt.luot = Object.assign({}, tt.luot, { xong: true });
     luu();
     giaiDoan = "vinh-danh";
@@ -422,7 +428,7 @@
     window.VinhDanhDH.hien({
       bang: bang,
       doi: TEN_DOI.slice(0, tt.cauHinh.soDoi).map(function (ten, i) { return { ten: ten, diem: tt.diem[i] }; }),
-      tomTat: dsLuot.length + " câu đố · " + soDung + " câu có người trả lời đúng · " + bang.length + " người được ghi tên",
+      tomTat: (soDaChoi < dsLuot.length ? "Đã chơi " + soDaChoi + " / " + dsLuot.length + " câu" : dsLuot.length + " câu đố") + " · " + soDung + " câu có người trả lời đúng · " + bang.length + " người được ghi tên",
     });
   }
 
@@ -469,6 +475,7 @@
     $("o-am-thanh").addEventListener("change", function () { if ($("o-am-thanh").checked !== window.AmThanh.dangBat()) window.AmThanh.batTat(); });
     $("nut-vao").addEventListener("click", batDauLuotMoi);
     $("nut-man-cho").addEventListener("click", moManCho);
+    $("o-thu-tu").addEventListener("change", function () { tt.cauHinh.thuTu = $("o-thu-tu").value === "de-kho" ? "de-kho" : "tron"; luu(); });
     $("o-phut-cho").addEventListener("change", function () { tt.cauHinh.phutCho = Number($("o-phut-cho").value) || 0; luu(); });
     $("nut-tiep-luot").addEventListener("click", function () { tt.luot = Object.assign({}, tt.luot, { xong: false }); moSanKhau(tt.luot.viTri); });
     $("nut-xem-vinh-danh").addEventListener("click", moVinhDanh);

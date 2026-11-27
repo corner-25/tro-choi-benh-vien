@@ -139,7 +139,7 @@ test("Lật Ô Chữ & Đuổi hình bắt chữ: khớp tiếng Việt có dấ
 
   const dh = DuoiHinh.demTu("KẸT THANG MÁY");
   assert.deepEqual(dh.map((x) => x.doDai), [3, 5, 3]);
-  assert.equal(DuoiHinh.boMau().length, 10);
+  assert.equal(DuoiHinh.boMau().length, 15);
   assert.equal(DuoiHinh.boHoatHoa().length, 8);
 });
 
@@ -154,17 +154,17 @@ test("Đuổi hình bắt chữ: bộ mẫu là câu chơi chữ, gợi ý chữ
   assert.equal(DuoiHinh.diemThuong({ daGoiY: true, soChuGoiY: 2 }), 1);
 });
 
-test("Đuổi hình bắt chữ: 10 câu chia 3 mức, không trùng tranh, xếp dễ → khó, lọc được theo mức", () => {
+test("Đuổi hình bắt chữ: 15 câu chia 3 mức, không trùng tranh, xếp dễ → khó, lọc được theo mức", () => {
   const bo = DuoiHinh.boMau();
-  assert.deepEqual(bo.map((c) => c.dapAn), ["CÔNG ĐOÀN", "BĂNG CA", "TRỰC ĐÊM", "BÁC SĨ", "SIÊU ÂM", "ĐẠI BIỂU", "NỘI SOI", "NỘI TRÚ", "Y TÁ", "KHẨU TRANG"]);
+  assert.deepEqual(bo.map((c) => c.dapAn), ["CÔNG ĐOÀN", "BĂNG CA", "TRỰC ĐÊM", "BÁC SĨ", "ĐIỆN TIM", "MẮT CÁ", "SIÊU ÂM", "ĐẠI BIỂU", "NỘI SOI", "TOA THUỐC", "BÓ BỘT", "BÁO CÁO", "NỘI TRÚ", "Y TÁ", "KHẨU TRANG"]);
   assert.equal(new Set(bo.map((c) => c.canhId)).size, bo.length);
   assert.equal(new Set(bo.map((c) => c.dapAn)).size, bo.length);
   assert.ok(bo.every((c) => ["de", "vua", "kho"].includes(c.mucDo)));
   const thuTu = { de: 0, vua: 1, kho: 2 };
   for (let i = 1; i < bo.length; i += 1) assert.ok(thuTu[bo[i - 1].mucDo] <= thuTu[bo[i].mucDo], "lệch thứ tự ở câu " + (i + 1));
-  assert.deepEqual(["de", "vua", "kho"].map((m) => DuoiHinh.boMau(m).length), [4, 3, 3]);
+  assert.deepEqual(["de", "vua", "kho"].map((m) => DuoiHinh.boMau(m).length), [6, 6, 3]);
   assert.ok(DuoiHinh.boMau("kho").every((c) => c.mucDo === "kho"));
-  assert.equal(DuoiHinh.boMau("la-lam").length, 10); // mức lạ → trả cả bộ
+  assert.equal(DuoiHinh.boMau("la-lam").length, 15); // mức lạ → trả cả bộ
   // Mức độ lạ bị bỏ, câu tự thêm chưa phân loại
   assert.equal(DuoiHinh.chuanHoa({ mucDo: "<script>" }).mucDo, "");
   assert.equal(DuoiHinh.tenMucDo("vua"), "Vừa");
@@ -188,8 +188,8 @@ test("Đuổi hình bắt chữ: chia tổng số câu theo mức, không vượ
   assert.deepEqual(DuoiHinh.chiaTheoTong(-3, coSan), { de: 0, vua: 0, kho: 0, khac: 0 });
   // Bộ chỉ có câu chưa phân loại
   assert.deepEqual(DuoiHinh.chiaTheoTong(3, { de: 0, vua: 0, kho: 0, khac: 5 }), { de: 0, vua: 0, kho: 0, khac: 3 });
-  assert.deepEqual(DuoiHinh.demTheoMuc(DuoiHinh.boMau()), { de: 4, vua: 3, kho: 3, khac: 0 });
-  assert.deepEqual(DuoiHinh.chiaTheoTong(10, DuoiHinh.demTheoMuc(DuoiHinh.boMau())), { de: 4, vua: 3, kho: 3, khac: 0 });
+  assert.deepEqual(DuoiHinh.demTheoMuc(DuoiHinh.boMau()), { de: 6, vua: 6, kho: 3, khac: 0 });
+  assert.deepEqual(DuoiHinh.chiaTheoTong(15, DuoiHinh.demTheoMuc(DuoiHinh.boMau())), { de: 6, vua: 6, kho: 3, khac: 0 });
 });
 
 test("Đuổi hình bắt chữ: tạo đề thi đúng số câu mỗi mức, không trùng, xếp dễ → khó, không sửa bộ gốc", () => {
@@ -233,4 +233,41 @@ test("Đuổi hình bắt chữ: tên sự kiện trên màn hình chờ viết 
   assert.equal(DuoiHinh.moRongVietTat("Đại hội NLĐ"), "Đại hội Người lao động");
   assert.equal(DuoiHinh.moRongVietTat("Tất niên khoa VCB"), "Tất niên khoa VCB"); // không đụng chữ khác
   assert.equal(DuoiHinh.moRongVietTat(null), "");
+});
+
+test("Đuổi hình bắt chữ: đề thi trộn lẫn mức độ, rải đều để dừng sớm vẫn gặp đủ dễ – vừa – khó", () => {
+  const bo = DuoiHinh.boMau();
+  const soLuong = { de: 6, vua: 6, kho: 3 };
+  let seed = 7;
+  const rng = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  for (let lan = 0; lan < 200; lan += 1) {
+    const de = DuoiHinh.taoDeThi(bo, soLuong, rng, "tron");
+    assert.equal(de.length, 15);
+    assert.equal(new Set(de.map((c) => c.id)).size, 15);
+    const muc = de.map((c) => c.mucDo);
+    assert.deepEqual([muc.filter((m) => m === "de").length, muc.filter((m) => m === "vua").length, muc.filter((m) => m === "kho").length], [6, 6, 3]);
+    // Rải đều: trong 7 câu đầu đã có câu khó và câu vừa; không có 3 câu khó liền nhau
+    assert.ok(muc.slice(0, 7).includes("kho") && muc.slice(0, 7).includes("vua"), muc.join(","));
+    assert.ok(!muc.join(",").includes("kho,kho,kho"), muc.join(","));
+  }
+  // Không phải lúc nào cũng bắt đầu bằng câu dễ, và không giữ thứ tự dễ → khó
+  const dau = new Set(), sapXep = [];
+  for (let lan = 0; lan < 60; lan += 1) {
+    const m = DuoiHinh.taoDeThi(bo, soLuong, rng, "tron").map((c) => c.mucDo);
+    dau.add(m[0]); sapXep.push(m.join(",") === m.slice().sort((a, b) => ({ de: 0, vua: 1, kho: 2 })[a] - ({ de: 0, vua: 1, kho: 2 })[b]).join(","));
+  }
+  assert.ok(dau.size >= 2);
+  assert.ok(sapXep.filter(Boolean).length < 5);
+  // Thứ tự mặc định vẫn là dễ → khó
+  assert.deepEqual(DuoiHinh.taoDeThi(bo, { de: 1, vua: 1, kho: 1 }, rng).map((c) => c.mucDo), ["de", "vua", "kho"]);
+});
+
+test("Đuổi hình bắt chữ: mỗi câu trong bộ mẫu đều có cặp hình đăng ký trong các file vẽ", () => {
+  const fs = require("node:fs"), path = require("node:path");
+  const goc = path.join(__dirname, "..", "js", "duoi-hinh");
+  const maNguon = ["ve-tranh.js", "hinh-them.js", "hinh-dep.js", "hinh-moi.js"].map((f) => fs.readFileSync(path.join(goc, f), "utf8")).join("\n");
+  DuoiHinh.boMau().forEach((c) => {
+    const ten = c.canhId.slice(6);
+    assert.ok(maNguon.includes('"' + ten + '": ['), "thiếu cặp hình cho " + ten);
+  });
 });
